@@ -20,25 +20,36 @@ export function Header() {
         </Link>
         <div className="flex items-center gap-4">
           <nav className="items-center hidden gap-6 text-sm font-medium md:flex">
-             <Link
-              href="/#features"
-              className="transition-colors text-foreground/60 hover:text-foreground/80"
-            >
-              Features
-            </Link>
-             <Link
-              href="/#faq"
-              className="transition-colors text-foreground/60 hover:text-foreground/80"
-            >
-              FAQ
-            </Link>
-            {user && (
-               <Link
-                href="/history"
-                className="transition-colors text-foreground/60 hover:text-foreground/80"
-              >
-                History
-              </Link>
+            {user ? (
+              <>
+                <Link
+                  href="/analysis"
+                  className="transition-colors text-foreground/60 hover:text-foreground/80"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/history"
+                  className="transition-colors text-foreground/60 hover:text-foreground/80"
+                >
+                  History
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/#features"
+                  className="transition-colors text-foreground/60 hover:text-foreground/80"
+                >
+                  Features
+                </Link>
+                <Link
+                  href="/#faq"
+                  className="transition-colors text-foreground/60 hover:text-foreground/80"
+                >
+                  FAQ
+                </Link>
+              </>
             )}
           </nav>
            <div className="w-px h-6 bg-border hidden md:block" />
