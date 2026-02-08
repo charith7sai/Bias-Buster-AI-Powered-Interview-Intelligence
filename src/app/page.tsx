@@ -65,42 +65,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="pricing" className="w-full py-20 md:py-24 lg:py-32 bg-secondary">
-        <div className="container px-4 md:px-6">
-          <div className="max-w-xl mx-auto mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Simple, Transparent Pricing</h2>
-            <p className="mt-4 text-lg text-muted-foreground">Get started for free. No credit card required.</p>
-          </div>
-          <div className="flex justify-center">
-            <Card className="w-full max-w-sm">
-              <CardHeader className="text-center">
-                <CardTitle className="text-4xl font-bold">Free</CardTitle>
-                <p className="text-muted-foreground">For individuals and small teams</p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                    <span>Up to 5 analyses per month</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                    <span>Full STAR & Bias Analysis</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                    <span>Runs entirely on your device</span>
-                  </li>
-                </ul>
-                <Button className="w-full" asChild>
-                  <Link href="/signup">Sign Up Now</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       <section id="faq" className="w-full py-20 md:py-24 lg:py-32">
         <div className="container max-w-4xl px-4 mx-auto md:px-6">
           <h2 className="mb-12 text-3xl font-bold text-center sm:text-4xl">Frequently Asked Questions</h2>

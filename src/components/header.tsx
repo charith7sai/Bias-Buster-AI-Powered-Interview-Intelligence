@@ -27,12 +27,6 @@ export function Header() {
               Features
             </Link>
              <Link
-              href="/#pricing"
-              className="transition-colors text-foreground/60 hover:text-foreground/80"
-            >
-              Pricing
-            </Link>
-             <Link
               href="/#faq"
               className="transition-colors text-foreground/60 hover:text-foreground/80"
             >
