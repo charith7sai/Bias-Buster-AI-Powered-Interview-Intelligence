@@ -1,0 +1,94 @@
+/**
+ * This ruleset enforces a strict user-ownership security model for the InterviewIQ application.
+ *
+ * Core Philosophy:
+ * Access to all data is denied by default. Permissions are explicitly granted based on
+ * user authentication and ownership. A user can only ever access data that exists
+ * within their own dedicated data tree.
+ *
+ * Data Structure:
+ * All application data is organized hierarchically under the `/users/{userId}` path.
+ * A user's profile is stored at `/users/{userId}`, and their corresponding interviews
+ * are stored in a subcollection at `/users/{userId}/interviews/{interviewId}`. This
+ * structure ensures that all data is cleanly partitioned per user.
+ *
+ * Key Security Decisions:
+ * - User Isolation: A user can only read, write, update, or delete documents within
+ *   their own data tree (i.e., where the path's `{userId}` matches their authenticated UID).
+ * - No User Enumeration: Listing the top-level `/users` collection is explicitly
+ *   disallowed to prevent malicious actors from discovering all registered user IDs.
+ * - Relational Integrity: On creation, documents must contain an ownership field (e.g., `id`
+ *   or `userId`) that matches the `userId` in the path. This field is enforced as
+ *   immutable to prevent documents from being "moved" between users.
+ *
+ * Denormalization for Authorization:
+ * The security model relies on path-based authorization. The `{userId}` in the document
+ * path is the primary source of truth for ownership. To ensure consistency, we denormalize
+ * this ownership information into the documents themselves (e.g., the `userId` field
+ * on an `Interview` document) and validate it with security rules.
+ *
+ * Structural Segregation:
+ * The data model naturally segregates each user's private data into their own document
+ * tree, which is a secure and performant pattern for this type of application. There
+ * is no shared or public data, simplifying the access control logic.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for readable, reusable, and maintainable rules.
+
+    /**
+     * Checks if the user is signed in.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Checks if the currently authenticated user's ID matches the provided userId.
+     * This is the core function for enforcing data ownership.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * Checks for ownership on an existing document. Used for safe updates and deletes
+     * to prevent operations on non-existent data.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    /**
+     * @description Rules for a user's profile document.
+     * @path /users/{userId}
+     * @allow A user (auth.uid='user123') reads their own profile at /users/user123 (get).
+     * @deny An authenticated user (auth.uid='user456') tries to read another user's profile at /users/user123 (get).
+     * @principle Restricts access to a user's own data tree and prevents user enumeration.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // CRITICAL: Prevent listing all users in the application.
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+
+      /**
+       * @description Rules for a user's interview documents, which are stored in a subcollection.
+       * @path /users/{userId}/interviews/{interviewId}
+       * @allow A user (auth.uid='user123') creates a new interview at /users/user123/interviews/interviewABC (create).
+       * @deny An authenticated user (auth.uid='user456') tries to list interviews at /users/user123/interviews (list).
+       * @principle Enforces document ownership for all operations and validates relational integrity.
+       */
+      match /interviews/{interviewId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+        allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+        allow delete: if isExistingOwner(userId);
+      }
+    }
+  }
+}

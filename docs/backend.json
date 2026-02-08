@@ -1,0 +1,123 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the InterviewIQ application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "name": {
+          "type": "string",
+          "description": "The user's full name."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the user account was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "name"
+      ]
+    },
+    "Interview": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Interview",
+      "type": "object",
+      "description": "Represents an interview recording and its analysis results.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the interview."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User who conducted or participated in the interview. (Relationship: User 1:N Interview)"
+        },
+        "recordingUrl": {
+          "type": "string",
+          "description": "URL or path to the interview recording file.",
+          "format": "uri"
+        },
+        "transcription": {
+          "type": "string",
+          "description": "The transcribed text of the interview."
+        },
+        "analysisResults": {
+          "type": "string",
+          "description": "JSON string containing the analysis results, STAR scores, bias detection, etc."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the interview was processed.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "recordingUrl",
+        "transcription",
+        "analysisResults"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles.  Path-based ownership ensures only the authenticated user can access their own data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/interviews/{interviewId}",
+        "definition": {
+          "entityName": "Interview",
+          "schema": {
+            "$ref": "#/backend/entities/Interview"
+          },
+          "description": "Stores interview recordings and analysis data for each user.  Path-based ownership guarantees only the authenticated user can access their own interview data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "interviewId",
+              "description": "The unique identifier of the interview."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to ensure authorization independence, clarity, and scalability. User data is stored under `/users/{userId}` which allows for simple ownership-based security rules. Interview data is stored as a subcollection under each user's document (`/users/{userId}/interviews/{interviewId}`) to maintain clear ownership and enable efficient querying of a user's interviews. This structure avoids hierarchical authorization dependencies, which means security rules don't need to traverse up the document tree to validate access. This setup promotes simpler, more robust security rules. There are no custom claims because authorization relies solely on `request.auth.uid`. The design supports the required QAPs by segregating user-specific data, making list operations secure within the user's scope."
+  }
+}
