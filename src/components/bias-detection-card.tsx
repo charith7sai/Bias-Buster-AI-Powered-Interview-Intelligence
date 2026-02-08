@@ -6,7 +6,7 @@ import {
   ShieldAlert,
   Info,
 } from "lucide-react";
-import type { DetectInterviewerBiasOutput } from "@/ai/flows/detect-interviewer-bias";
+import type { DetectInterviewerBiasOutput } from "@/app/actions";
 import {
   Card,
   CardContent,

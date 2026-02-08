@@ -4,14 +4,14 @@ import { MOCK_TRANSCRIPT } from "@/lib/mock-data";
 
 // Copied types from AI flows to decouple the action from them
 // This allows the app to run without a configured Genkit/API key
-type StarAnalysisOutput = {
+export type StarAnalysisOutput = {
   overallRating: string;
   strengths: string;
   improvements: string;
   starScores: Record<string, number>;
 };
 
-type DetectInterviewerBiasOutput = {
+export type DetectInterviewerBiasOutput = {
   overallAssessment: string;
   biases: {
     biasType: string;

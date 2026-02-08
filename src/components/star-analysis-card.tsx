@@ -1,7 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
-import type { StarAnalysisOutput } from "@/ai/flows/generate-star-analysis";
+import type { StarAnalysisOutput } from "@/app/actions";
 import {
   Card,
   CardContent,
