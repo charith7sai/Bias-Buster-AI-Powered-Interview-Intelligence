@@ -99,7 +99,7 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
                 id="file-upload"
                 type="file"
                 className="hidden"
-                accept="audio/*,video/*"
+                accept="audio/*,video/*,audio/ogg,application/ogg"
                 onChange={(e) => handleFileChange(e.target.files)}
               />
             </div>
