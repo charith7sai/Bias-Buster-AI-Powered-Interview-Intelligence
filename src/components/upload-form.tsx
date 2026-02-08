@@ -20,7 +20,7 @@ const formSchema = z.object({
 
 type UploadFormProps = {
   isPending: boolean;
-  onSubmit: (data: FormData) => void;
+  onSubmit: () => void;
 };
 
 export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
@@ -61,11 +61,7 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
   };
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    const formData = new FormData();
-    if (values.file) {
-      formData.append("file", values.file);
-    }
-    onSubmit(formData);
+    onSubmit();
   };
   
   return (

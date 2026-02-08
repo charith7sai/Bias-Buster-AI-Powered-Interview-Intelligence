@@ -16,11 +16,11 @@ export default function Home() {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
-  const handleAnalysis = async (formData: FormData) => {
+  const handleAnalysis = async () => {
     setAnalysis(null);
 
     startTransition(async () => {
-      const { data, error } = await analyzeInterview(formData);
+      const { data, error } = await analyzeInterview();
 
       if (error) {
         toast({

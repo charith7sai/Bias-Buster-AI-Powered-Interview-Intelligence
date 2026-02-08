@@ -37,7 +37,7 @@ export type AnalysisResult = {
 // This function simulates a delay to mimic a real-world processing time.
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export async function analyzeInterview(formData: FormData): Promise<{
+export async function analyzeInterview(): Promise<{
   data: AnalysisResult | null;
   error: string | null;
 }> {
