@@ -8,8 +8,7 @@
  * - GenerateCandidateScoreOutput - The return type for the generateCandidateScore function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {z} from 'zod';
 
 const GenerateCandidateScoreInputSchema = z.object({
   starAnalysis: z
@@ -28,40 +27,3 @@ const GenerateCandidateScoreOutputSchema = z.object({
   improvements: z.string().describe('Suggestions for improvement for the candidate.'),
 });
 export type GenerateCandidateScoreOutput = z.infer<typeof GenerateCandidateScoreOutputSchema>;
-
-export async function generateCandidateScore(
-  input: GenerateCandidateScoreInput
-): Promise<GenerateCandidateScoreOutput> {
-  return generateCandidateScoreFlow(input);
-}
-
-const prompt = ai.definePrompt({
-  name: 'generateCandidateScorePrompt',
-  input: {schema: GenerateCandidateScoreInputSchema},
-  output: {schema: GenerateCandidateScoreOutputSchema},
-  prompt: `You are an expert recruiter tasked with evaluating candidates based on their STAR analysis.
-
-  Based on the provided STAR analysis, generate an overall candidate score (out of 100), identify the candidate's strengths, and provide suggestions for improvement.
-
-  STAR Analysis: {{{starAnalysis}}}
-
-  Respond concisely and directly.
-
-  Output:
-  - overallScore: The overall candidate score (out of 100).
-  - strengths: A summary of the candidate's strengths.
-  - improvements: Suggestions for improvement for the candidate.
-  `,
-});
-
-const generateCandidateScoreFlow = ai.defineFlow(
-  {
-    name: 'generateCandidateScoreFlow',
-    inputSchema: GenerateCandidateScoreInputSchema,
-    outputSchema: GenerateCandidateScoreOutputSchema,
-  },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
-  }
-);

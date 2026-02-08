@@ -7,8 +7,7 @@
  * - SummarizeStrengthsWeaknessesOutput - The return type for the summarizeStrengthsWeaknesses function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {z} from 'zod';
 
 const SummarizeStrengthsWeaknessesInputSchema = z.object({
   interviewText: z.string().describe('The transcribed text of the interview.'),
@@ -20,31 +19,3 @@ const SummarizeStrengthsWeaknessesOutputSchema = z.object({
   weaknesses: z.string().describe("A summary of the candidate's weaknesses."),
 });
 export type SummarizeStrengthsWeaknessesOutput = z.infer<typeof SummarizeStrengthsWeaknessesOutputSchema>;
-
-export async function summarizeStrengthsWeaknesses(input: SummarizeStrengthsWeaknessesInput): Promise<SummarizeStrengthsWeaknessesOutput> {
-  return summarizeStrengthsWeaknessesFlow(input);
-}
-
-const prompt = ai.definePrompt({
-  name: 'summarizeStrengthsWeaknessesPrompt',
-  input: {schema: SummarizeStrengthsWeaknessesInputSchema},
-  output: {schema: SummarizeStrengthsWeaknessesOutputSchema},
-  prompt: `You are an expert in evaluating job candidate interviews. You will be provided with the transcribed text of an interview. Please analyze the interview text and summarize the candidate's key strengths and weaknesses.
-
-Interview Text:
-{{interviewText}}
-
-Based on the text, provide a summary of the candidate's strengths and weaknesses.`,
-});
-
-const summarizeStrengthsWeaknessesFlow = ai.defineFlow(
-  {
-    name: 'summarizeStrengthsWeaknessesFlow',
-    inputSchema: SummarizeStrengthsWeaknessesInputSchema,
-    outputSchema: SummarizeStrengthsWeaknessesOutputSchema,
-  },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
-  }
-);
