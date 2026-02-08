@@ -20,7 +20,7 @@ export function AnalysisDashboard({ analysis }: AnalysisDashboardProps) {
           strengths={analysis.starAnalysis.strengths}
           improvements={analysis.starAnalysis.improvements}
         />
-        <StarAnalysisCard starScores={analysis.starAnalysis.starScores} />
+        <StarAnalysisCard starAnalysis={analysis.starAnalysis} />
       </div>
       <StrengthsImprovementsCard
         strengths={analysis.candidateScore.strengths}

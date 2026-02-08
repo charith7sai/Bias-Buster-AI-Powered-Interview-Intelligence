@@ -22,10 +22,15 @@ import {
 } from "@/components/ui/chart";
 import type { ChartConfig } from "@/components/ui/chart";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface StarAnalysisCardProps {
-  starScores: StarAnalysisOutput["starScores"];
+  starAnalysis: StarAnalysisOutput;
 }
 
 const chartConfig = {
@@ -35,13 +40,16 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
-  const chartData = Object.entries(starScores).map(([question, score], index) => ({
-    name: `Q${index + 1}`,
-    question: question,
-    score: score,
-    fill: "var(--color-score)",
-  }));
+export function StarAnalysisCard({ starAnalysis }: StarAnalysisCardProps) {
+  const { starScores, starBreakdowns } = starAnalysis;
+  const chartData = Object.entries(starScores).map(
+    ([question, score], index) => ({
+      name: `Q${index + 1}`,
+      question: question,
+      score: score,
+      fill: "var(--color-score)",
+    })
+  );
 
   return (
     <Card>
@@ -58,7 +66,7 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
         <Tabs defaultValue="scores" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="scores">Scores</TabsTrigger>
-            <TabsTrigger value="explanation">What is STAR?</TabsTrigger>
+            <TabsTrigger value="breakdown">STAR Breakdown</TabsTrigger>
           </TabsList>
           <TabsContent value="scores" className="pt-4">
             <ChartContainer config={chartConfig} className="w-full h-[250px]">
@@ -76,7 +84,9 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
                     <ChartTooltipContent
                       formatter={(value, name, item) => (
                         <div className="flex flex-col gap-1">
-                          <span className="font-bold">{item.payload.question}</span>
+                          <span className="font-bold">
+                            {item.payload.question}
+                          </span>
                           <span>Score: {value}/5</span>
                         </div>
                       )}
@@ -89,24 +99,39 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
               </ChartBarChart>
             </ChartContainer>
           </TabsContent>
-          <TabsContent value="explanation" className="pt-4 text-sm text-muted-foreground">
-             <div className="space-y-3">
-               <p>The STAR method is a structured technique for answering behavioral interview questions by providing a concise, concrete story of a past experience.</p>
-               <ul className="space-y-2 pl-4">
-                 <li>
-                   <strong className="font-semibold text-foreground">S - Situation:</strong> Set the scene and provide the context of the event or situation you were in.
-                 </li>
-                 <li>
-                   <strong className="font-semibold text-foreground">T - Task:</strong> Describe what your responsibility or goal was in that situation.
-                 </li>
-                 <li>
-                   <strong className="font-semibold text-foreground">A - Action:</strong> Detail the specific steps and actions you personally took to address the task.
-                 </li>
-                 <li>
-                   <strong className="font-semibold text-foreground">R - Result:</strong> Explain the outcome of your actions. What was accomplished? Use numbers or data to quantify your success if possible.
-                 </li>
-               </ul>
-             </div>
+          <TabsContent
+            value="breakdown"
+            className="pt-4 text-sm text-muted-foreground"
+          >
+            <Accordion type="single" collapsible className="w-full">
+              {starBreakdowns.map((breakdown, index) => (
+                <AccordionItem value={`item-${index}`} key={index}>
+                  <AccordionTrigger className="text-left hover:no-underline">
+                    <span className="font-semibold text-foreground">
+                      {breakdown.question}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="space-y-3 pt-2">
+                    <div className="space-y-1">
+                      <p className="font-semibold text-foreground">Situation:</p>
+                      <p>{breakdown.situation}</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-semibold text-foreground">Task:</p>
+                      <p>{breakdown.task}</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-semibold text-foreground">Action:</p>
+                      <p>{breakdown.action}</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-semibold text-foreground">Result:</p>
+                      <p>{breakdown.result}</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </TabsContent>
         </Tabs>
       </CardContent>

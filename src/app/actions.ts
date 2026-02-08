@@ -4,11 +4,21 @@ import { MOCK_TRANSCRIPT } from "@/lib/mock-data";
 
 // Copied types from AI flows to decouple the action from them
 // This allows the app to run without a configured Genkit/API key
+
+export type StarBreakdown = {
+  question: string;
+  situation: string;
+  task: string;
+  action: string;
+  result: string;
+};
+
 export type StarAnalysisOutput = {
   overallRating: string;
   strengths: string;
   improvements: string;
   starScores: Record<string, number>;
+  starBreakdowns: StarBreakdown[];
 };
 
 export type DetectInterviewerBiasOutput = {
@@ -49,6 +59,22 @@ const mockAnalyses: Omit<AnalysisResult, 'transcript'>[] = [
         "Challenging project with a tight deadline": 5,
         "Conflict with a team member": 5,
       },
+       starBreakdowns: [
+        {
+          question: "Challenging project with a tight deadline",
+          situation: "We had a key client e-commerce platform project with a six-month timeline. The client suddenly moved the launch date up by two months to coincide with a new marketing campaign.",
+          task: "My responsibility as the lead Project Manager was to re-plan the entire project to meet the new, aggressive deadline without sacrificing essential platform features or quality.",
+          action: "I immediately assembled the team leads to re-prioritize features using the MoSCoW method. I successfully renegotiated scope with the client to move non-critical features to a phase two release. I also adopted a more agile workflow with daily stand-ups and onboarded a freelance designer to accelerate the design process.",
+          result: "We launched the platform on the new deadline. It performed flawlessly during the marketing campaign, leading to a 20% increase in the client's online sales in the first month. The team's morale was high, and our new agile process was adopted company-wide.",
+        },
+        {
+          question: "Conflict with a team member",
+          situation: "A senior developer on the project was resistant to the new agile process I introduced, viewing it as micromanagement. This created friction within the team.",
+          task: "I needed to resolve this conflict to maintain team morale and ensure we stayed on track with our accelerated timeline.",
+          action: "I met with the developer one-on-one to listen to his concerns. We collaborated on modifying the stand-up format to be more efficient. I also gave him full ownership of a critical backend component to empower him and leverage his expertise.",
+          result: "The developer became a strong advocate for the new process. The team's communication improved, the conflict was resolved, and his contributions were crucial to the project's success.",
+        },
+      ],
     },
     biasDetection: {
       overallAssessment:
@@ -73,6 +99,22 @@ const mockAnalyses: Omit<AnalysisResult, 'transcript'>[] = [
         "Challenging project with a tight deadline": 4,
         "Conflict with a team member": 4,
       },
+      starBreakdowns: [
+        {
+          question: "Challenging project with a tight deadline",
+          situation: "My team was working on a client project, and the deadline was moved up.",
+          task: "I had to figure out how to get the project done faster.",
+          action: "I talked to the team about what features were most important. We decided to focus on the core functionalities and pushed some other things to a later update. I also set up more frequent check-in meetings.",
+          result: "We managed to launch the main platform on time. The client was happy that we met the new date.",
+        },
+        {
+          question: "Conflict with a team member",
+          situation: "I had a disagreement with a coworker about the best way to approach a task.",
+          task: "We needed to get on the same page so we could move forward.",
+          action: "I asked them to have a chat. We talked about our different ideas and found a compromise that worked for both of us.",
+          result: "We were able to resolve the issue and finish the task together. Our working relationship got better after that.",
+        },
+      ],
     },
     biasDetection: {
       overallAssessment:
@@ -104,6 +146,22 @@ const mockAnalyses: Omit<AnalysisResult, 'transcript'>[] = [
         "Challenging project with a tight deadline": 2,
         "Conflict with a team member": 3,
       },
+      starBreakdowns: [
+        {
+          question: "Challenging project with a tight deadline",
+          situation: "We had a project that was due soon.",
+          task: "The task was to finish it on time.",
+          action: "I worked extra hours to get my parts done. I tried to tell everyone to work faster.",
+          result: "The project was a bit late, but we eventually finished it. It was a stressful time.",
+        },
+        {
+          question: "Conflict with a team member",
+          situation: "A teammate and I weren't agreeing on things.",
+          task: "I had to deal with the situation.",
+          action: "I mostly just tried to avoid them to prevent more arguments. I did my work, and they did theirs.",
+          result: "We didn't argue anymore, but we also didn't collaborate much. The work got done, but it wasn't a great team atmosphere.",
+        },
+      ],
     },
     biasDetection: {
       overallAssessment: "A potential 'Leading Question' bias was detected. The interviewer sometimes phrased questions in a way that suggested the desired answer, which may have influenced the candidate's responses.",
