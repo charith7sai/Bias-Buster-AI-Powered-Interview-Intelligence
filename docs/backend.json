@@ -27,8 +27,7 @@
       },
       "required": [
         "id",
-        "email",
-        "name"
+        "email"
       ]
     },
     "Interview": {
@@ -67,16 +66,15 @@
       "required": [
         "id",
         "userId",
-        "recordingUrl",
-        "transcription",
-        "analysisResults"
+        "recordingUrl"
       ]
     }
   },
   "auth": {
     "providers": [
       "password",
-      "anonymous"
+      "anonymous",
+      "google.com"
     ]
   },
   "firestore": {

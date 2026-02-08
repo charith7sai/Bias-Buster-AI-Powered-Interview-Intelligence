@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { TrendingUp, Target } from "lucide-react";
+import { Target } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -26,7 +26,7 @@ interface OverallScoreCardProps {
 const chartConfig = {
   score: {
     label: "Score",
-    color: "hsl(var(--primary))",
+    color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
 
@@ -77,7 +77,6 @@ export function OverallScoreCard({ score }: OverallScoreCardProps) {
               dataKey="value"
               background={{ fill: "hsl(var(--muted))" }}
               cornerRadius={10}
-              className="fill-primary"
             />
              <ChartTooltip
               cursor={false}

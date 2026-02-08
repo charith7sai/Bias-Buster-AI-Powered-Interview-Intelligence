@@ -33,7 +33,7 @@ export function StrengthsImprovementsCard({
       </CardHeader>
       <CardContent className="grid gap-6 md:grid-cols-2">
         <div className="space-y-3">
-          <h3 className="flex items-center text-lg font-semibold text-green-600 dark:text-green-400">
+          <h3 className="flex items-center text-lg font-semibold text-emerald-600 dark:text-emerald-400">
             <ThumbsUp className="w-5 h-5 mr-2" />
             Strengths
           </h3>
@@ -43,12 +43,12 @@ export function StrengthsImprovementsCard({
             ))}
           </ul>
         </div>
-        <div className="relative">
-          <Separator orientation="vertical" className="absolute left-0 hidden h-full md:block -ml-3" />
-          <Separator className="block md:hidden" />
+        <div className="relative hidden md:block">
+          <Separator orientation="vertical" className="absolute left-0 h-full -ml-3" />
         </div>
+        <Separator className="block md:hidden" />
         <div className="space-y-3">
-          <h3 className="flex items-center text-lg font-semibold text-yellow-600 dark:text-yellow-400">
+          <h3 className="flex items-center text-lg font-semibold text-amber-600 dark:text-amber-400">
             <TrendingUp className="w-5 h-5 mr-2" />
             Areas for Improvement
           </h3>

@@ -1,6 +1,8 @@
 "use client";
 
 import { Star } from "lucide-react";
+import { BarChart } from "recharts";
+
 import type { StarAnalysisOutput } from "@/app/actions";
 import {
   Card,
@@ -16,7 +18,6 @@ import {
   ChartXAxis,
   ChartYAxis,
   ChartBar,
-  ChartBarChart,
   ChartBarLabel,
 } from "@/components/ui/chart";
 import type { ChartConfig } from "@/components/ui/chart";
@@ -28,7 +29,7 @@ interface StarAnalysisCardProps {
 const chartConfig = {
   score: {
     label: "STAR Score",
-    color: "hsl(var(--accent))",
+    color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
@@ -37,6 +38,7 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
     name: `Q${index + 1}`,
     question: question,
     score: score,
+    fill: "var(--color-score)",
   }));
 
   return (
@@ -52,7 +54,7 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="w-full h-[250px]">
-          <ChartBarChart data={chartData} accessibilityLayer>
+          <BarChart data={chartData} accessibilityLayer>
             <ChartXAxis
               dataKey="name"
               tickLine={false}
@@ -76,7 +78,7 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
             <ChartBar dataKey="score" radius={8}>
               <ChartBarLabel />
             </ChartBar>
-          </ChartBarChart>
+          </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>

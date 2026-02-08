@@ -37,7 +37,7 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
   const handleFileChange = (files: FileList | null) => {
     if (files && files.length > 0) {
       setFileName(files[0].name);
-      form.setValue("file", files[0]);
+      // We don't need to set the file in the form state anymore as it's not being sent to the server.
     }
   };
 
@@ -59,22 +59,18 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
       handleFileChange(e.dataTransfer.files);
     }
   };
-
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    onSubmit();
-  };
   
   return (
     <Card className="sticky top-24">
       <CardHeader>
-        <CardTitle>Interview Details</CardTitle>
+        <CardTitle>Start New Analysis</CardTitle>
         <CardDescription>
-          Provide the interview details to begin analysis. The system runs fully offline.
+          Upload an audio or video file to begin. The analysis runs entirely on your device.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div
               className={cn(
                 "relative flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer hover:border-primary transition-colors",
@@ -88,19 +84,19 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
             >
               <FileUp className="w-10 h-10 text-muted-foreground" />
               <p className="mt-2 text-sm text-center text-muted-foreground">
-                {fileName ? fileName : "Drag & drop audio/video file or click to select"}
+                {fileName ? fileName : "Drag & drop file or click to select"}
               </p>
               <Input
                 ref={fileInputRef}
                 id="file-upload"
                 type="file"
                 className="hidden"
-                accept="audio/*,video/*,audio/ogg,application/ogg"
+                accept="audio/*,video/*,audio/ogg,application/ogg,.ogx"
                 onChange={(e) => handleFileChange(e.target.files)}
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={isPending}>
+            <Button type="submit" className="w-full" disabled={isPending || !fileName}>
               {isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
               {isPending ? "Analyzing..." : "Analyze Interview"}
             </Button>
