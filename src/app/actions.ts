@@ -1,25 +1,9 @@
 "use server";
 
-import { z } from "zod";
-import {
-  generateStarAnalysis,
-  type StarAnalysisOutput,
-} from "@/ai/flows/generate-star-analysis";
-import {
-  detectInterviewerBias,
-  type DetectInterviewerBiasOutput,
-} from "@/ai/flows/detect-interviewer-bias";
-import {
-  generateCandidateScore,
-  type GenerateCandidateScoreOutput,
-} from "@/ai/flows/generate-candidate-score";
+import type { StarAnalysisOutput } from "@/ai/flows/generate-star-analysis";
+import type { DetectInterviewerBiasOutput } from "@/ai/flows/detect-interviewer-bias";
+import type { GenerateCandidateScoreOutput } from "@/ai/flows/generate-candidate-score";
 import { MOCK_TRANSCRIPT } from "@/lib/mock-data";
-
-const formSchema = z.object({
-  jobDescription: z.string().min(1, "Job description is required."),
-  candidateName: z.string().min(1, "Candidate name is required."),
-  interviewerName: z.string().min(1, "Interviewer name is required."),
-});
 
 export type AnalysisResult = {
   starAnalysis: StarAnalysisOutput;
@@ -36,58 +20,46 @@ export async function analyzeInterview(formData: FormData): Promise<{
   error: string | null;
 }> {
   try {
-    const rawFormData = Object.fromEntries(formData.entries());
-    const validation = formSchema.safeParse(rawFormData);
-
-    if (!validation.success) {
-      return {
-        data: null,
-        error: validation.error.errors.map((e) => e.message).join(", "),
-      };
-    }
-
-    const { jobDescription, candidateName, interviewerName } = validation.data;
     const transcript = MOCK_TRANSCRIPT;
 
     // Simulate processing time
     await sleep(2000);
 
-    const [starAnalysisResult, biasDetectionResult] = await Promise.all([
-      generateStarAnalysis({
-        interviewText: transcript,
-        candidateName,
-        jobDescription,
-      }),
-      detectInterviewerBias({
-        transcript,
-        candidateName,
-        interviewerName,
-      }),
-    ]);
-    
-    // Create a summary of STAR analysis to feed into the candidate score generator
-    const starAnalysisSummary = `
-      Overall Rating: ${starAnalysisResult.overallRating}. 
-      Strengths: ${starAnalysisResult.strengths}. 
-      Areas for Improvement: ${starAnalysisResult.improvements}.
-      Scores per question: ${JSON.stringify(starAnalysisResult.starScores)}
-    `;
-
-    const candidateScoreResult = await generateCandidateScore({
-      starAnalysis: starAnalysisSummary
-    });
-    
-    return {
-      data: {
-        starAnalysis: starAnalysisResult,
-        biasDetection: biasDetectionResult,
-        candidateScore: candidateScoreResult,
-        transcript,
+    const mockAnalysis: AnalysisResult = {
+      starAnalysis: {
+        overallRating: "Good",
+        strengths:
+          "The candidate provides clear and structured answers. They effectively use the STAR method to describe their experiences.",
+        improvements:
+          "The candidate could provide more quantifiable results to better demonstrate the impact of their actions.",
+        starScores: {
+          "Challenging project with a tight deadline": 4,
+          "Conflict with a team member": 5,
+        },
       },
+      biasDetection: {
+        overallAssessment:
+          "The interview appears to be conducted fairly. No significant biases were detected. The interviewer's questions were open-ended and focused on the candidate's experience and skills.",
+        biases: [],
+      },
+      candidateScore: {
+        overallScore: 85,
+        strengths:
+          "- Strong communication skills\n- Solid problem-solving abilities\n- Good experience with conflict resolution",
+        improvements: "- Could provide more data-driven results",
+      },
+      transcript,
+    };
+
+    return {
+      data: mockAnalysis,
       error: null,
     };
   } catch (err) {
     console.error("Analysis failed:", err);
-    return { data: null, error: "An unexpected error occurred during analysis." };
+    return {
+      data: null,
+      error: "An unexpected error occurred during analysis.",
+    };
   }
 }

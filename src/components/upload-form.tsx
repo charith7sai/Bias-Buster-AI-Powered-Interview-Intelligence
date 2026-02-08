@@ -9,21 +9,12 @@ import { FileUp, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
-  jobDescription: z.string().min(10, "Please provide a more detailed job description."),
-  candidateName: z.string().min(2, "Candidate name must be at least 2 characters."),
-  interviewerName: z.string().min(2, "Interviewer name must be at least 2 characters."),
   file: z.any().optional(),
 });
 
@@ -40,9 +31,6 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      jobDescription: "",
-      candidateName: "",
-      interviewerName: "",
     },
   });
 
@@ -74,9 +62,6 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
     const formData = new FormData();
-    formData.append("jobDescription", values.jobDescription);
-    formData.append("candidateName", values.candidateName);
-    formData.append("interviewerName", values.interviewerName);
     if (values.file) {
       formData.append("file", values.file);
     }
@@ -119,51 +104,6 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
               />
             </div>
 
-            <FormField
-              control={form.control}
-              name="jobDescription"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Job Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="e.g., Senior Frontend Engineer with React experience..."
-                      className="min-h-[100px]"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="grid grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="candidateName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Candidate Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Jane Doe" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="interviewerName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Interviewer Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., John Smith" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
             <Button type="submit" className="w-full" disabled={isPending}>
               {isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
               {isPending ? "Analyzing..." : "Analyze Interview"}
