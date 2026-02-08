@@ -355,6 +355,22 @@ function getPayloadConfigFromPayload(
     : config[key as keyof typeof config]
 }
 
+const ChartGrid = RechartsPrimitive.CartesianGrid
+const ChartXAxis = RechartsPrimitive.XAxis
+const ChartYAxis = RechartsPrimitive.YAxis
+const ChartBar = RechartsPrimitive.Bar
+const ChartLine = RechartsPrimitive.Line
+const ChartBarChart = RechartsPrimitive.BarChart
+const ChartLineChart = RechartsPrimitive.LineChart
+const ChartRadialBar = RechartsPrimitive.RadialBar
+
+const ChartBarLabel = React.forwardRef<
+  React.ElementRef<typeof RechartsPrimitive.LabelList>,
+  React.ComponentPropsWithoutRef<typeof RechartsPrimitive.LabelList>
+>((props, ref) => <RechartsPrimitive.LabelList ref={ref} {...props} />)
+
+ChartBarLabel.displayName = RechartsPrimitive.LabelList.displayName
+
 export {
   ChartContainer,
   ChartTooltip,
@@ -362,4 +378,13 @@ export {
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  ChartGrid,
+  ChartXAxis,
+  ChartYAxis,
+  ChartBar,
+  ChartLine,
+  ChartBarChart,
+  ChartLineChart,
+  ChartBarLabel,
+  ChartRadialBar
 }
