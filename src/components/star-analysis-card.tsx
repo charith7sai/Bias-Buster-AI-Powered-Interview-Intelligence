@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import type { StarAnalysisOutput } from "@/ai/flows/generate-star-analysis";
 import {
   Card,
@@ -16,6 +16,7 @@ import {
   ChartXAxis,
   ChartYAxis,
   ChartBar,
+  ChartBarChart,
   ChartBarLabel,
 } from "@/components/ui/chart";
 import type { ChartConfig } from "@/components/ui/chart";
@@ -51,7 +52,7 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="w-full h-[250px]">
-          <BarChart data={chartData} accessibilityLayer>
+          <ChartBarChart data={chartData} accessibilityLayer>
             <ChartXAxis
               dataKey="name"
               tickLine={false}
@@ -75,7 +76,7 @@ export function StarAnalysisCard({ starScores }: StarAnalysisCardProps) {
             <ChartBar dataKey="score" radius={8}>
               <ChartBarLabel />
             </ChartBar>
-          </BarChart>
+          </ChartBarChart>
         </ChartContainer>
       </CardContent>
     </Card>
