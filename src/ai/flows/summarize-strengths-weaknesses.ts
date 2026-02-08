@@ -16,8 +16,8 @@ const SummarizeStrengthsWeaknessesInputSchema = z.object({
 export type SummarizeStrengthsWeaknessesInput = z.infer<typeof SummarizeStrengthsWeaknessesInputSchema>;
 
 const SummarizeStrengthsWeaknessesOutputSchema = z.object({
-  strengths: z.string().describe('A summary of the candidate\'s strengths.'),
-  weaknesses: z.string().describe('A summary of the candidate\'s weaknesses.'),
+  strengths: z.string().describe("A summary of the candidate's strengths."),
+  weaknesses: z.string().describe("A summary of the candidate's weaknesses."),
 });
 export type SummarizeStrengthsWeaknessesOutput = z.infer<typeof SummarizeStrengthsWeaknessesOutputSchema>;
 
@@ -29,16 +29,12 @@ const prompt = ai.definePrompt({
   name: 'summarizeStrengthsWeaknessesPrompt',
   input: {schema: SummarizeStrengthsWeaknessesInputSchema},
   output: {schema: SummarizeStrengthsWeaknessesOutputSchema},
-  prompt: `You are an expert in evaluating job candidate interviews.  You will be provided with the transcribed text of an interview.  Please analyze the interview text and summarize the candidate\'s key strengths and weaknesses.
+  prompt: `You are an expert in evaluating job candidate interviews. You will be provided with the transcribed text of an interview. Please analyze the interview text and summarize the candidate's key strengths and weaknesses.
 
 Interview Text:
 {{interviewText}}
 
-Strengths:
-{{output.strengths}}
-
-Weaknesses:
-{{output.weaknesses}}`,
+Based on the text, provide a summary of the candidate's strengths and weaknesses.`,
 });
 
 const summarizeStrengthsWeaknessesFlow = ai.defineFlow(
