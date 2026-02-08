@@ -32,6 +32,14 @@ export function Header() {
             >
               FAQ
             </Link>
+            {user && (
+               <Link
+                href="/history"
+                className="transition-colors text-foreground/60 hover:text-foreground/80"
+              >
+                History
+              </Link>
+            )}
           </nav>
            <div className="w-px h-6 bg-border hidden md:block" />
           {isUserLoading ? (

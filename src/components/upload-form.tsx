@@ -9,18 +9,24 @@ import { FileUp, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
+  candidateName: z.string().min(1, "Candidate name is required."),
   file: z.any().optional(),
 });
 
 type UploadFormProps = {
   isPending: boolean;
-  onSubmit: () => void;
+  onSubmit: (data: { candidateName: string }) => void;
 };
 
 export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
@@ -31,6 +37,7 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      candidateName: "",
     },
   });
 
@@ -71,6 +78,20 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+             <FormField
+              control={form.control}
+              name="candidateName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Candidate Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g., Jane Doe" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <div
               className={cn(
                 "relative flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer hover:border-primary transition-colors",

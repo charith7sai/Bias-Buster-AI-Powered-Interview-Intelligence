@@ -2,7 +2,8 @@
 
 import React, { useState, useTransition, useEffect } from "react";
 import { useRouter } from 'next/navigation';
-import { BrainCircuit } from "lucide-react";
+import { BrainCircuit, Loader2 } from "lucide-react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 import { UploadForm } from "@/components/upload-form";
 import type { AnalysisResult } from "@/app/actions";
@@ -10,7 +11,9 @@ import { analyzeInterview } from "@/app/actions";
 import { AnalysisDashboard } from "@/components/analysis-dashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
-import { useUser } from "@/firebase";
+import { useUser, useFirestore, useFirebase } from "@/firebase";
+import { FirestorePermissionError } from "@/firebase/errors";
+import { errorEmitter } from "@/firebase/error-emitter";
 
 export default function AnalysisPage() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
@@ -18,6 +21,7 @@ export default function AnalysisPage() {
   const { toast } = useToast();
   const { user, isUserLoading } = useUser();
   const router = useRouter();
+  const firestore = useFirestore();
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -25,12 +29,49 @@ export default function AnalysisPage() {
     }
   }, [user, isUserLoading, router]);
 
+  const saveAnalysis = async (analysisData: AnalysisResult) => {
+    if (!user || !firestore) return;
 
-  const handleAnalysis = async () => {
+    try {
+      const interviewsCol = collection(firestore, 'users', user.uid, 'interviews');
+      
+      const docData = {
+        ...analysisData,
+        userId: user.uid,
+        createdAt: serverTimestamp(),
+      };
+
+      await addDoc(interviewsCol, docData)
+        .catch(error => {
+           errorEmitter.emit(
+            'permission-error',
+            new FirestorePermissionError({
+              path: interviewsCol.path,
+              operation: 'create',
+              requestResourceData: docData,
+            })
+          )
+        });
+
+      toast({
+        title: "Analysis Saved",
+        description: "The interview analysis has been saved to your history.",
+      });
+    } catch (error) {
+       toast({
+        variant: "destructive",
+        title: "Save Failed",
+        description: "Could not save the analysis to your history.",
+      });
+      console.error("Error saving analysis:", error);
+    }
+  };
+
+  const handleAnalysis = async ({ candidateName }: { candidateName: string }) => {
     setAnalysis(null);
 
     startTransition(async () => {
-      const { data, error } = await analyzeInterview();
+      const { data, error } = await analyzeInterview(candidateName);
 
       if (error) {
         toast({
@@ -41,7 +82,10 @@ export default function AnalysisPage() {
         return;
       }
 
-      setAnalysis(data);
+      if (data) {
+        setAnalysis(data);
+        await saveAnalysis(data);
+      }
     });
   };
 
@@ -52,7 +96,6 @@ export default function AnalysisPage() {
        </div>
     );
   }
-
 
   return (
     <div className="flex-1 w-full max-w-screen-xl px-4 py-8 mx-auto md:px-6">
@@ -88,14 +131,4 @@ export default function AnalysisPage() {
       </div>
     </div>
   );
-}
-
-import { Loader2 } from 'lucide-react';
-
-function Loading() {
-    return (
-        <div className="flex items-center justify-center min-h-screen">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        </div>
-    );
 }

@@ -38,16 +38,18 @@ type GenerateCandidateScoreOutput = {
 };
 
 export type AnalysisResult = {
+  candidateName: string;
   starAnalysis: StarAnalysisOutput;
   biasDetection: DetectInterviewerBiasOutput;
   candidateScore: GenerateCandidateScoreOutput;
   transcript: string;
+  id?: string;
 };
 
 // This function simulates a delay to mimic a real-world processing time.
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const mockAnalyses: Omit<AnalysisResult, 'transcript'>[] = [
+const mockAnalyses: Omit<AnalysisResult, 'transcript' | 'candidateName'>[] = [
   {
     starAnalysis: {
       overallRating: "Excellent",
@@ -185,7 +187,7 @@ const mockAnalyses: Omit<AnalysisResult, 'transcript'>[] = [
 ];
 
 
-export async function analyzeInterview(): Promise<{
+export async function analyzeInterview(candidateName: string): Promise<{
   data: AnalysisResult | null;
   error: string | null;
 }> {
@@ -204,6 +206,7 @@ export async function analyzeInterview(): Promise<{
     const finalScore = Math.min(100, Math.max(0, baseAnalysis.candidateScore.overallScore + randomScoreAdjustment));
 
     const finalAnalysis: AnalysisResult = {
+      candidateName,
       ...baseAnalysis,
       candidateScore: {
         ...baseAnalysis.candidateScore,

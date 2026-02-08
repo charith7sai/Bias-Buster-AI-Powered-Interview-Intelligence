@@ -42,20 +42,31 @@
         },
         "userId": {
           "type": "string",
-          "description": "Reference to the User who conducted or participated in the interview. (Relationship: User 1:N Interview)"
+          "description": "Reference to the User who conducted or participated in the interview."
         },
-        "recordingUrl": {
+        "candidateName": {
           "type": "string",
-          "description": "URL or path to the interview recording file.",
-          "format": "uri"
+          "description": "Name of the candidate who was interviewed."
         },
-        "transcription": {
+        "transcript": {
           "type": "string",
           "description": "The transcribed text of the interview."
         },
-        "analysisResults": {
-          "type": "string",
-          "description": "JSON string containing the analysis results, STAR scores, bias detection, etc."
+        "starAnalysis": {
+          "type": "object",
+          "properties": {}
+        },
+        "biasDetection": {
+          "type": "object",
+          "properties": {}
+        },
+        "candidateScore": {
+          "type": "object",
+          "properties": {
+            "overallScore": {
+              "type": "number"
+            }
+          }
         },
         "createdAt": {
           "type": "string",
@@ -66,7 +77,7 @@
       "required": [
         "id",
         "userId",
-        "recordingUrl"
+        "candidateName"
       ]
     }
   },
