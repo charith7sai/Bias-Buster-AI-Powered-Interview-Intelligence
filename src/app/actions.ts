@@ -1,9 +1,31 @@
 "use server";
 
-import type { StarAnalysisOutput } from "@/ai/flows/generate-star-analysis";
-import type { DetectInterviewerBiasOutput } from "@/ai/flows/detect-interviewer-bias";
-import type { GenerateCandidateScoreOutput } from "@/ai/flows/generate-candidate-score";
 import { MOCK_TRANSCRIPT } from "@/lib/mock-data";
+
+// Copied types from AI flows to decouple the action from them
+// This allows the app to run without a configured Genkit/API key
+type StarAnalysisOutput = {
+  overallRating: string;
+  strengths: string;
+  improvements: string;
+  starScores: Record<string, number>;
+};
+
+type DetectInterviewerBiasOutput = {
+  overallAssessment: string;
+  biases: {
+    biasType: string;
+    description: string;
+    severity: string;
+    example?: string | undefined;
+  }[];
+};
+
+type GenerateCandidateScoreOutput = {
+  overallScore: number;
+  strengths: string;
+  improvements: string;
+};
 
 export type AnalysisResult = {
   starAnalysis: StarAnalysisOutput;
