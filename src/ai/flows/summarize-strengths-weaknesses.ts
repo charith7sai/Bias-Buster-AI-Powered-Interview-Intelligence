@@ -12,7 +12,6 @@ import {z} from 'genkit';
 
 const SummarizeStrengthsWeaknessesInputSchema = z.object({
   interviewText: z.string().describe('The transcribed text of the interview.'),
-  candidateName: z.string().describe('The name of the candidate.'),
 });
 export type SummarizeStrengthsWeaknessesInput = z.infer<typeof SummarizeStrengthsWeaknessesInputSchema>;
 
@@ -30,7 +29,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeStrengthsWeaknessesPrompt',
   input: {schema: SummarizeStrengthsWeaknessesInputSchema},
   output: {schema: SummarizeStrengthsWeaknessesOutputSchema},
-  prompt: `You are an expert in evaluating job candidate interviews.  You will be provided with the transcribed text of an interview with {{candidateName}}.  Please analyze the interview text and summarize the candidate\'s key strengths and weaknesses.
+  prompt: `You are an expert in evaluating job candidate interviews.  You will be provided with the transcribed text of an interview.  Please analyze the interview text and summarize the candidate\'s key strengths and weaknesses.
 
 Interview Text:
 {{interviewText}}

@@ -15,8 +15,6 @@ const StarAnalysisInputSchema = z.object({
   interviewText: z
     .string()
     .describe('The full transcript of the interview including interviewer and candidate speech.'),
-  candidateName: z.string().describe('The name of the candidate being interviewed.'),
-  jobDescription: z.string().describe('The job description for the role.'),
 });
 export type StarAnalysisInput = z.infer<typeof StarAnalysisInputSchema>;
 
@@ -40,10 +38,7 @@ const prompt = ai.definePrompt({
   output: {schema: StarAnalysisOutputSchema},
   prompt: `You are an expert interview analyzer, skilled in evaluating candidates based on the STAR framework (Situation, Task, Action, Result).
 
-  Analyze the following interview transcript for {{candidateName}}, applying for the role described below.  Provide an overall rating, a summary of the candidate\'s strengths and areas for improvement, and a STAR score for each question.
-
-  Job Description:
-  {{jobDescription}}
+  Analyze the following interview transcript.  Provide an overall rating, a summary of the candidate\'s strengths and areas for improvement, and a STAR score for each question.
 
   Interview Transcript:
   {{interviewText}}

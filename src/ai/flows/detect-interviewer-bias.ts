@@ -15,8 +15,6 @@ import {z} from 'genkit';
 
 const DetectInterviewerBiasInputSchema = z.object({
   transcript: z.string().describe('The full transcript of the interview.'),
-  interviewerName: z.string().describe('The name of the interviewer.'),
-  candidateName: z.string().describe('The name of the candidate.'),
 });
 export type DetectInterviewerBiasInput = z.infer<typeof DetectInterviewerBiasInputSchema>;
 
@@ -43,7 +41,7 @@ const detectInterviewerBiasPrompt = ai.definePrompt({
   output: {schema: DetectInterviewerBiasOutputSchema},
   prompt: `You are an AI expert in analyzing interview transcripts to detect interviewer bias.
 
-  Analyze the following interview transcript between {{interviewerName}} and {{candidateName}} for potential biases.  Provide specific examples from the transcript where possible.
+  Analyze the following interview transcript for potential biases.  Provide specific examples from the transcript where possible.
 
   Types of bias to look for include:
   - Leading questions: Questions that subtly suggest the desired answer.
