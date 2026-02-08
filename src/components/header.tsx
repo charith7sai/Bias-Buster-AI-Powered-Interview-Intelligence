@@ -15,7 +15,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2 mr-auto">
           <AppIcon className="w-8 h-8 text-primary" />
           <h1 className="text-xl font-bold tracking-tight">
-            Interview<span className="text-primary">IQ</span>
+            Bias<span className="text-primary">Buster</span>
           </h1>
         </Link>
         <div className="flex items-center gap-4">

@@ -5,8 +5,8 @@ import { Header } from '@/components/header';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
-  title: 'InterviewIQ - Offline Analyzer',
-  description: 'AI-powered analysis of interview recordings, running entirely offline.',
+  title: 'Bias Buster',
+  description: 'AI-powered interview analysis to help you identify and eliminate bias.',
 };
 
 export default function RootLayout({

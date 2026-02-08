@@ -14,11 +14,7 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M12 22a4.95 4.95 0 0 0 4.95-4.95c0-2.73-2.22-4.95-4.95-4.95a4.95 4.95 0 0 0-4.95 4.95A4.95 4.95 0 0 0 12 22Z" />
-      <path d="M15 13a3 3 0 1 0-6 0" />
-      <path d="M12 2v10" />
-      <path d="m4.2 8.5 1.8 1.8" />
-      <path d="m18 10.3 1.8-1.8" />
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
     </svg>
   );
 }

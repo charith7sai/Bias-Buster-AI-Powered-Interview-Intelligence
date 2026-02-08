@@ -14,10 +14,10 @@ export default function LandingPage() {
               AI-Powered Interview Analysis
             </div>
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-balance">
-              Unlock Deeper Insights from Your Interviews
+              Eliminate Unconscious Bias from Your Interviews
             </h1>
             <p className="max-w-xl mx-auto text-lg text-muted-foreground text-balance">
-              InterviewIQ uses local AI to analyze interview recordings, providing STAR analysis, bias detection, and performance scoring—all offline.
+              Bias Buster uses AI to analyze interview recordings, helping you conduct fairer, more objective interviews.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button asChild size="lg">
@@ -71,7 +71,7 @@ export default function LandingPage() {
           <div className="space-y-6">
               <div>
                   <h3 className="font-semibold text-lg">Is my data secure?</h3>
-                  <p className="text-muted-foreground mt-2">Yes. InterviewIQ runs 100% locally on your machine. Your interview recordings and analysis results never leave your device, ensuring complete privacy and security.</p>
+                  <p className="text-muted-foreground mt-2">Yes. Bias Buster runs 100% locally on your machine. Your interview recordings and analysis results never leave your device, ensuring complete privacy and security.</p>
               </div>
               <div>
                   <h3 className="font-semibold text-lg">What file formats are supported?</h3>
@@ -89,9 +89,9 @@ export default function LandingPage() {
         <div className="container flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-6">
           <div className="flex items-center gap-2">
             <AppIcon className="w-6 h-6" />
-            <span>InterviewIQ</span>
+            <span>Bias Buster</span>
           </div>
-          <p>&copy; 2024 InterviewIQ. All rights reserved.</p>
+          <p>&copy; 2024 Bias Buster. All rights reserved.</p>
         </div>
       </footer>
     </div>

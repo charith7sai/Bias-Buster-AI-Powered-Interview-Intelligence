@@ -1,5 +1,5 @@
 /**
- * This ruleset enforces a strict user-ownership security model for the InterviewIQ application.
+ * This ruleset enforces a strict user-ownership security model for the Bias Buster application.
  *
  * Core Philosophy:
  * Access to all data is denied by default. Permissions are explicitly granted based on

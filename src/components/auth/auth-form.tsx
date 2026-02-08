@@ -123,7 +123,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         </div>
         <CardTitle>{mode === "login" ? "Welcome Back" : "Create an Account"}</CardTitle>
         <CardDescription>
-          {mode === "login" ? "Sign in to continue to InterviewIQ." : "Enter your details to get started."}
+          {mode === "login" ? "Sign in to continue to Bias Buster." : "Enter your details to get started."}
         </CardDescription>
       </CardHeader>
       <CardContent>
