@@ -116,7 +116,7 @@ export function AuthForm({ mode }: AuthFormProps) {
   };
 
   return (
-    <Card>
+    <Card className="bg-transparent border-none shadow-none">
       <CardHeader className="text-center">
         <div className="flex justify-center mb-4">
           <AppIcon className="h-12" />
@@ -136,7 +136,7 @@ export function AuthForm({ mode }: AuthFormProps) {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
+                    <Input placeholder="name@example.com" {...field} suppressHydrationWarning />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -149,7 +149,7 @@ export function AuthForm({ mode }: AuthFormProps) {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
+                    <Input type="password" placeholder="••••••••" {...field} suppressHydrationWarning />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -163,14 +163,14 @@ export function AuthForm({ mode }: AuthFormProps) {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
+                    <Input type="password" placeholder="••••••••" {...field} suppressHydrationWarning />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             )}
-            <Button type="submit" className="w-full" disabled={isPending}>
+            <Button type="submit" className="w-full" disabled={isPending} suppressHydrationWarning>
               {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {mode === "login" ? "Sign In" : "Create Account"}
             </Button>
@@ -181,7 +181,7 @@ export function AuthForm({ mode }: AuthFormProps) {
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">
+            <span className="px-2 bg-sky-50 text-muted-foreground">
               Or continue with
             </span>
           </div>
@@ -191,6 +191,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           className="w-full"
           onClick={onGoogleSignIn}
           disabled={isGooglePending}
+          suppressHydrationWarning
         >
           {isGooglePending ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
