@@ -17,8 +17,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-inter)', 'sans-serif'],
-        headline: ['var(--font-inter)', 'sans-serif'],
+        body: ['var(--font-inter)'],
+        headline: ['var(--font-inter)'],
+        sans: ['var(--font-inter)', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -85,10 +86,15 @@ export default {
             height: '0',
           },
         },
+        'wave': {
+          '0%': { transform: 'translateX(-50%) translateY(-50%) rotate(0deg)' },
+          '100%': { transform: 'translateX(-50%) translateY(-50%) rotate(360deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'wave': 'wave 50s linear infinite',
       },
     },
   },
