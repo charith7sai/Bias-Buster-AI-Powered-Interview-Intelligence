@@ -7,16 +7,13 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g transform="translate(0, 12)">
-        <path
-          d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z M30 7 L56 22.32 L56 46.96 L30 62.28 L4 46.96 L4 22.32 Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="6"
-          transform="scale(0.5)"
-        />
-      </g>
-      
+      <path
+        d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z M30 7 L56 22.32 L56 46.96 L30 62.28 L4 46.96 L4 22.32 Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="6"
+        transform="translate(0, 12) scale(0.5)"
+      />
       <text
         x="45"
         y="30"
@@ -29,7 +26,6 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
       >
         BiasBuster
       </text>
-
       <text
         x="170"
         y="52"
