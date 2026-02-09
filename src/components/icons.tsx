@@ -15,12 +15,10 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
       />
       <text
         x="45"
-        y="30"
-        fontFamily="Inter, sans-serif"
+        y="40"
         fontSize="36"
         fontWeight="bold"
         fill="currentColor"
-        dominantBaseline="middle"
         letterSpacing="0.5"
       >
         BiasBuster
@@ -28,13 +26,11 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
       <text
         x="170"
         y="52"
-        fontFamily="Inter, sans-serif"
         fontSize="9"
         fontWeight="300"
         fill="currentColor"
         textAnchor="middle"
         letterSpacing="2"
-        style={{ textTransform: 'uppercase' }}
       >
         UNBIASED HIRING STARTS HERE
       </text>
