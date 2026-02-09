@@ -8,11 +8,10 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
       {...props}
     >
       <path
-        d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z M30 7 L56 22.32 L56 46.96 L30 62.28 L4 46.96 L4 22.32 Z"
+        d="M15 12 L30 20.66 L30 37.98 L15 46.64 L0 37.98 L0 20.66 Z M15 15.5 L28 23.16 L28 35.48 L15 43.14 L2 35.48 L2 23.16 Z"
         fill="none"
         stroke="currentColor"
-        strokeWidth="6"
-        transform="translate(0, 12) scale(0.5)"
+        strokeWidth="3"
       />
       <text
         x="45"
