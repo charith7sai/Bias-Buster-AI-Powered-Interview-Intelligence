@@ -3,27 +3,37 @@ import type { SVGProps } from "react";
 export function AppIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 210 58"
+      viewBox="0 0 420 60"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g transform="translate(7.2, 18.2) scale(0.4)">
-        <path d="M54.5,1.6L79.7,15.7v28.2L54.5,58L29.3,43.9V15.7L54.5,1.6z M54.5,10.6L36.6,20.8v18.5l17.9,10.1l17.9-10.1V20.8 L54.5,10.6z" fill="currentColor"/>
+      {/* Hexagon Icon */}
+      <g transform="translate(10, 0)">
+        <path
+          d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z M30 7 L56 22.32 L56 46.96 L30 62.28 L4 46.96 L4 22.32 Z"
+          fill="currentColor"
+          transform="scale(0.7)"
+        />
       </g>
+      
+      {/* Text: iasBuster */}
       <text
-        x="45"
-        y="31"
+        x="55"
+        y="30"
         fontFamily="Inter, sans-serif"
-        fontSize="28"
+        fontSize="36"
         fontWeight="bold"
         fill="currentColor"
         dominantBaseline="middle"
+        letterSpacing="0.5"
       >
         iasBuster
       </text>
+
+      {/* Tagline */}
       <text
-        x="127"
-        y="50"
+        x="235"
+        y="52"
         fontFamily="Inter, sans-serif"
         fontSize="9"
         fontWeight="300"
