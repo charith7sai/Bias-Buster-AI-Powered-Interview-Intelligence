@@ -3,47 +3,45 @@ import type { SVGProps } from "react";
 export function AppIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 210 58"
+      viewBox="0 0 320 60"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g>
-        {/* Hexagon icon, scaled and positioned to match font height. */}
-        <g transform="translate(7.2, 18.2) scale(0.4)">
-          <path 
-            d="M34 1 L61 15.5 V44.5 L34 58 L7 44.5 V15.5 Z M34 10 L55.5 22.25 V40.75 L34 52.5 L12.5 40.75 V22.25 Z" 
-            fillRule="evenodd" 
-            fill="#374151"
-          />
-        </g>
-        
-        {/* Text part of the logo */}
-        <text 
-          x="33" 
-          y="30" 
-          fontFamily="Inter, sans-serif" 
-          fontSize="24" 
-          fill="#374151"
+      <g transform="translate(0, 5)">
+        {/* Icon */}
+        <path
+          d="M25,0 C-15,35 25,70 25,70 C25,70 65,35 25,0 Z"
+          fill="#5B21B6" // Deep purple
+          transform="scale(0.7)"
+        />
+        <circle cx="14" cy="14" r="2.1" fill="white" />
+        <circle cx="21" cy="14" r="2.1" fill="white" />
+      </g>
+      <g transform="translate(50, 0)">
+        {/* Brand Name */}
+        <text
+          x="0"
+          y="30"
+          fontFamily="Georgia, serif"
+          fontSize="24"
+          fontWeight="bold"
+          fill="#B91C1C" // Red
           dominantBaseline="middle"
         >
-          <tspan fontWeight="400">ias</tspan>
-          <tspan fontWeight="700">Buster</tspan>
+          BiasBuster
         </text>
-
-        {/* Custom dot for the 'i' to match the image */}
-        <circle cx="36" cy="15.5" r="2.5" fill="#374151" />
-        
         {/* Tagline */}
-        <text 
-          x="105" 
-          y="52" 
-          fontFamily="Inter, sans-serif" 
-          fontSize="8" 
-          fill="#374151" 
-          letterSpacing="0.15em"
+        <text
+          x="135"
+          y="50"
+          fontFamily="Inter, sans-serif"
+          fontSize="8"
+          fontWeight="300"
+          fill="#B91C1C" // Red
           textAnchor="middle"
+          letterSpacing="1.5"
         >
-          UNBIASED HIRING STARTS HERE
+          – UNBIASED HIRING STARTS HERE –
         </text>
       </g>
     </svg>
