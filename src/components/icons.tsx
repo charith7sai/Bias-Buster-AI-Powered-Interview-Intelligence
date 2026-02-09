@@ -11,7 +11,7 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
         {/* Hexagon spiral icon. Scaled to be about 55px tall. */}
         <g transform="scale(0.95)">
           <path 
-            d="M34 1 L61 15.5 V44.5 L34 58 L7 44.5 V15.5 Z M34 10 L55.5 22.25 V40.75 L34 52.5 L12.5 40.75 V22.25 Z M34 19 L49 29 V35 L34 45 L19 35 V29 Z" 
+            d="M34 1 L61 15.5 V44.5 L34 58 L7 44.5 V15.5 Z M34 10 L55.5 22.25 V40.75 L34 52.5 L12.5 40.75 V22.25 Z" 
             fillRule="evenodd" 
             fill="#374151"
           />
