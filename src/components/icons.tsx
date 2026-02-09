@@ -3,24 +3,30 @@ import type { SVGProps } from "react";
 export function AppIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      viewBox="0 0 68 58"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <defs>
-        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop stopColor="#6366F1" />
-          <stop offset="1" stopColor="#8B5CF6" />
-        </linearGradient>
-      </defs>
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M21.65 12L18.31 19H5.69L2.35 12L5.69 5H18.31L21.65 12ZM18.31 12L16.19 17.5H7.81L5.69 12L7.81 6.5H16.19L18.31 12ZM14.2 9L13.2 7.5H10.8L9.8 9H8V15H9.8L10.8 16.5H13.2L14.2 15H16V9H14.2ZM14 10.5V13.5H13.2L12.2 12L13.2 10.5H14Z"
-        fill="url(#logo-gradient)"
+        d="M33.9999 0.900024L6.49994 16.5V47.1L33.9999 57.9L61.4999 47.1V16.5L33.9999 0.900024Z"
+        fill="#374151"
+      />
+      <path
+        d="M34 5.4L9.80005 18.5V45.1L34 53.4L58.2 45.1V18.5L34 5.4Z"
+        fill="white"
+      />
+      <path
+        d="M33.9999 9.90002L13.1999 21.2V42.8L33.9999 49.6L54.7999 42.8V21.2L33.9999 9.90002Z"
+        fill="#374151"
+      />
+      <path
+        d="M34 14.4L16.6 24V39.6L34 45.1L51.4 39.6V24L34 14.4Z"
+        fill="white"
+      />
+      <path
+        d="M34 18.9L20 26.7V36.9L34 42.4L48 36.9V26.7L34 18.9Z"
+        fill="#374151"
       />
     </svg>
   );
