@@ -3,22 +3,22 @@ import type { SVGProps } from "react";
 export function AppIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 420 60"
+      viewBox="0 0 340 60"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g transform="translate(10, 0)">
+      <g transform="translate(0, 12)">
         <path
           d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z M30 7 L56 22.32 L56 46.96 L30 62.28 L4 46.96 L4 22.32 Z"
           fill="none"
           stroke="currentColor"
           strokeWidth="6"
-          transform="scale(0.7)"
+          transform="scale(0.5)"
         />
       </g>
       
       <text
-        x="55"
+        x="45"
         y="30"
         fontFamily="Inter, sans-serif"
         fontSize="36"
@@ -27,11 +27,11 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
         dominantBaseline="middle"
         letterSpacing="0.5"
       >
-        iasBuster
+        BiasBuster
       </text>
 
       <text
-        x="235"
+        x="170"
         y="52"
         fontFamily="Inter, sans-serif"
         fontSize="9"
