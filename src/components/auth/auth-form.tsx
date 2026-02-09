@@ -119,7 +119,7 @@ export function AuthForm({ mode }: AuthFormProps) {
     <Card>
       <CardHeader className="text-center">
         <div className="flex justify-center mb-4">
-          <AppIcon className="w-10 h-10" />
+          <AppIcon className="h-12" />
         </div>
         <CardTitle>{mode === "login" ? "Welcome Back" : "Create an Account"}</CardTitle>
         <CardDescription>

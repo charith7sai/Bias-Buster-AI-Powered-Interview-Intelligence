@@ -87,9 +87,8 @@ export default function LandingPage() {
 
       <footer className="py-8 text-center text-muted-foreground text-sm border-t">
         <div className="container flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-6">
-          <div className="flex items-center gap-2">
-            <AppIcon className="w-6 h-6" />
-            <span>Bias Buster</span>
+          <div className="flex items-center">
+            <AppIcon className="h-8" />
           </div>
           <p>&copy; 2024 Bias Buster. All rights reserved.</p>
         </div>

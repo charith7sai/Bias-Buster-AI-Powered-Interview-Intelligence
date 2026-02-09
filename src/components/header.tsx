@@ -12,11 +12,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <Link href="/" className="flex items-center gap-2 mr-auto">
-          <AppIcon className="w-8 h-8 text-primary" />
-          <h1 className="text-xl font-bold tracking-tight">
-            Bias<span className="text-primary">Buster</span>
-          </h1>
+        <Link href="/" className="flex items-center mr-auto">
+          <AppIcon className="h-10" />
         </Link>
         <div className="flex items-center gap-4">
           <nav className="items-center hidden gap-6 text-sm font-medium md:flex">
