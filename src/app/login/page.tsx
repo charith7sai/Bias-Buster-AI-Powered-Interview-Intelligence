@@ -1,13 +1,14 @@
 "use client";
 
 import { AuthForm } from "@/components/auth/auth-form";
+import { AuthLayout } from "@/components/auth/auth-layout";
 
 export default function LoginPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-12">
+    <AuthLayout>
       <div className="w-full max-w-md">
         <AuthForm mode="login" />
       </div>
-    </div>
+    </AuthLayout>
   );
 }
