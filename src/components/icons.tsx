@@ -29,6 +29,9 @@ export function AppIcon(props: SVGProps<SVGSVGElement>) {
           <tspan fontWeight="400">ias</tspan>
           <tspan fontWeight="700">Buster</tspan>
         </text>
+
+        {/* Custom dot for the 'i' to match the image */}
+        <circle cx="58" cy="15.5" r="2.5" fill="#374151" />
         
         {/* Tagline */}
         <text 
