@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <Link href="/" className="flex items-center mr-auto">
+        <Link href={user ? "/analysis" : "/"} className="flex items-center mr-auto">
           <AppIcon className="h-10" />
         </Link>
         <div className="flex items-center gap-4">
@@ -32,24 +32,9 @@ export function Header() {
                   History
                 </Link>
               </>
-            ) : (
-              <>
-                <Link
-                  href="/#features"
-                  className="transition-colors text-foreground/60 hover:text-foreground/80"
-                >
-                  Features
-                </Link>
-                <Link
-                  href="/#faq"
-                  className="transition-colors text-foreground/60 hover:text-foreground/80"
-                >
-                  FAQ
-                </Link>
-              </>
-            )}
+            ) : null}
           </nav>
-           <div className="w-px h-6 bg-border hidden md:block" />
+           {user && <div className="w-px h-6 bg-border hidden md:block" />}
           {isUserLoading ? (
             <div className="w-8 h-8 rounded-full bg-muted animate-pulse" />
           ) : user ? (
@@ -57,7 +42,7 @@ export function Header() {
           ) : (
             <div className="flex items-center gap-2">
               <Button variant="ghost" asChild>
-                <Link href="/login">Log in</Link>
+                <Link href="/">Log in</Link>
               </Button>
               <Button asChild>
                 <Link href="/signup">Sign Up</Link>

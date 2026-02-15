@@ -212,7 +212,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         ) : (
           <p>
             Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-primary hover:underline">
+            <Link href="/" className="font-semibold text-primary hover:underline">
               Sign in
             </Link>
           </p>
