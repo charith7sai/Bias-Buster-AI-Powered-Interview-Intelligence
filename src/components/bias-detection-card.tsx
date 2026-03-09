@@ -21,6 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 interface BiasDetectionCardProps {
   biasDetection: DetectInterviewerBiasOutput;
