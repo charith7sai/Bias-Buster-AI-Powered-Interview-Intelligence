@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useTransition } from "react";
@@ -28,8 +29,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { AppIcon } from "../icons";
-import { GoogleIcon } from "./google-icon";
-import { handleEmailLogin, handleEmailSignUp, handleGoogleSignIn } from "@/firebase/auth";
+import { handleEmailLogin, handleEmailSignUp } from "@/firebase/auth";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -58,7 +58,6 @@ export function AuthForm({ mode }: AuthFormProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
-  const [isGooglePending, startGoogleTransition] = useTransition();
 
   const schema = mode === "login" ? loginSchema : signupSchema;
 
@@ -90,26 +89,6 @@ export function AuthForm({ mode }: AuthFormProps) {
           title: "Authentication Failed",
           description:
             error.message || "An unexpected error occurred. Please try again.",
-        });
-      }
-    });
-  };
-
-  const onGoogleSignIn = async () => {
-    startGoogleTransition(async () => {
-      try {
-        await handleGoogleSignIn();
-        toast({
-          title: "Google Sign-In Successful",
-          description: "Redirecting...",
-        });
-        router.push("/analysis");
-      } catch (error: any) {
-         toast({
-          variant: "destructive",
-          title: "Google Sign-In Failed",
-          description:
-            error.message || "Could not sign in with Google. Please try again.",
         });
       }
     });
@@ -176,30 +155,6 @@ export function AuthForm({ mode }: AuthFormProps) {
             </Button>
           </form>
         </Form>
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="px-2 bg-cyan-100 dark:bg-slate-900 text-muted-foreground">
-              Or continue with
-            </span>
-          </div>
-        </div>
-        <Button
-          variant="outline"
-          className="w-full"
-          onClick={onGoogleSignIn}
-          disabled={isGooglePending}
-          suppressHydrationWarning
-        >
-          {isGooglePending ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <GoogleIcon className="mr-2 h-4 w-4" />
-          )}
-          Google
-        </Button>
       </CardContent>
       <CardFooter className="text-sm text-center text-muted-foreground">
         {mode === "login" ? (
