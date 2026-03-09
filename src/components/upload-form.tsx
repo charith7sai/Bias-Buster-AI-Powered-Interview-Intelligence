@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { FileUp, Loader2 } from "lucide-react";
+import { FileUp, Loader2, CheckCircle2, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -44,7 +44,6 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
   const handleFileChange = (files: FileList | null) => {
     if (files && files.length > 0) {
       setFileName(files[0].name);
-      // We don't need to set the file in the form state anymore as it's not being sent to the server.
     }
   };
 
@@ -66,13 +65,19 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
       handleFileChange(e.dataTransfer.files);
     }
   };
+
+  const clearFile = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFileName("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
   
   return (
-    <Card className="sticky top-24">
+    <Card className="sticky top-24 transition-all duration-300 hover:shadow-md animate-in fade-in slide-in-from-left-4">
       <CardHeader>
         <CardTitle>Start New Analysis</CardTitle>
         <CardDescription>
-          Upload an audio or video file to begin. The analysis runs entirely on your device.
+          Upload an audio or video file to begin. The AI will diarize and analyze for behavioral insights.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -85,7 +90,11 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
                 <FormItem>
                   <FormLabel>Candidate Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., Jane Doe" {...field} />
+                    <Input 
+                      placeholder="e.g., Jane Doe" 
+                      className="transition-all focus:ring-2 focus:ring-primary/20"
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -94,8 +103,11 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
 
             <div
               className={cn(
-                "relative flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer hover:border-primary transition-colors",
-                dragActive ? "border-primary bg-primary/10" : "border-border"
+                "group relative flex flex-col items-center justify-center w-full p-8 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-300 overflow-hidden",
+                dragActive 
+                  ? "border-primary bg-primary/5 scale-[1.02] shadow-inner" 
+                  : "border-muted-foreground/20 hover:border-primary/50 hover:bg-accent/50",
+                fileName ? "bg-emerald-50/50 border-emerald-200 dark:bg-emerald-950/10 dark:border-emerald-900/30" : ""
               )}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
@@ -103,23 +115,58 @@ export function UploadForm({ isPending, onSubmit }: UploadFormProps) {
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
             >
-              <FileUp className="w-10 h-10 text-muted-foreground" />
-              <p className="mt-2 text-sm text-center text-muted-foreground">
-                {fileName ? fileName : "Drag & drop file or click to select"}
-              </p>
+              {fileName ? (
+                <div className="flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
+                  <div className="p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 mb-2">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400 max-w-full truncate px-4">
+                    {fileName}
+                  </p>
+                  <button 
+                    onClick={clearFile}
+                    className="mt-2 text-xs text-muted-foreground hover:text-destructive flex items-center gap-1 transition-colors"
+                  >
+                    <X className="w-3 h-3" /> Remove file
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="p-3 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors mb-2">
+                    <FileUp className="w-8 h-8 text-primary/60 group-hover:text-primary" />
+                  </div>
+                  <p className="text-sm font-medium text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                    Drag & drop or click to upload
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground/60">
+                    Audio or Video (Max 50MB)
+                  </p>
+                </>
+              )}
+              
               <Input
                 ref={fileInputRef}
                 id="file-upload"
                 type="file"
                 className="hidden"
-                accept="audio/*,video/*,audio/ogg,application/ogg,.ogx"
+                accept="audio/*,video/*"
                 onChange={(e) => handleFileChange(e.target.files)}
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={isPending || !fileName}>
-              {isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-              {isPending ? "Analyzing..." : "Analyze Interview"}
+            <Button 
+              type="submit" 
+              className="w-full transition-all active:scale-95 h-11" 
+              disabled={isPending || !fileName || !form.getValues("candidateName")}
+            >
+              {isPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                "Analyze Interview"
+              )}
             </Button>
           </form>
         </Form>

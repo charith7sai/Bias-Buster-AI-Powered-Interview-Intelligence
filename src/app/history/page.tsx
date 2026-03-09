@@ -1,10 +1,9 @@
-
 "use client";
 
 import React, { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Loader2, Trophy, BarChart, Calendar, ChevronRight, Trash2 } from 'lucide-react';
+import { Loader2, Trophy, BarChart, Calendar, ChevronRight, Trash2, BrainCircuit } from 'lucide-react';
 import { collection, query, orderBy, getDocs, writeBatch } from 'firebase/firestore';
 import { format } from 'date-fns';
 
@@ -102,15 +101,15 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="flex-1 w-full max-w-screen-xl px-4 py-8 mx-auto md:px-6">
-      <div className="flex items-start justify-between mb-8">
+    <div className="flex-1 w-full max-w-screen-xl px-4 py-12 mx-auto md:px-6 animate-in fade-in duration-500">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-10">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Analysis History</h1>
-          <p className="text-muted-foreground">Review your past interview analyses and compare candidates.</p>
+          <h1 className="text-4xl font-bold tracking-tight mb-2">Analysis History</h1>
+          <p className="text-muted-foreground text-lg">Review and compare candidates from past interview sessions.</p>
         </div>
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="outline" disabled={isLoading || !interviews || interviews.length === 0}>
+            <Button variant="outline" size="lg" className="hover:bg-destructive/5 hover:text-destructive transition-colors" disabled={isLoading || !interviews || interviews.length === 0}>
               <Trash2 className="mr-2 h-4 w-4" />
               Clear History
             </Button>
@@ -137,41 +136,50 @@ export default function HistoryPage() {
       
       {isLoading && (
         <div className="space-y-4">
-          <Skeleton className="h-24 w-full" />
-          <Skeleton className="h-24 w-full" />
-          <Skeleton className="h-24 w-full" />
+          <Skeleton className="h-32 w-full rounded-xl" />
+          <Skeleton className="h-32 w-full rounded-xl" />
+          <Skeleton className="h-32 w-full rounded-xl" />
         </div>
       )}
 
       {!isLoading && interviews && interviews.length > 0 && (
-        <div className="space-y-4">
-          {interviews.map(interview => (
-            <Link href={`/history/${interview.id}`} key={interview.id} className="block">
-              <Card className="transition-colors hover:border-primary">
-                <CardContent className="flex items-center justify-between p-4">
-                  <div className="flex items-center gap-4">
-                     <div className="p-3 rounded-full bg-primary/10">
-                        <BarChart className="w-6 h-6 text-primary" />
+        <div className="grid gap-4">
+          {interviews.map((interview, index) => (
+            <Link 
+              href={`/history/${interview.id}`} 
+              key={interview.id} 
+              className="block group animate-in fade-in slide-in-from-bottom-4 duration-500"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              <Card className="transition-all duration-300 group-hover:border-primary group-hover:shadow-md active:scale-[0.995]">
+                <CardContent className="flex items-center justify-between p-6">
+                  <div className="flex items-center gap-6">
+                     <div className="hidden sm:flex p-4 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary/10 transition-colors">
+                        <BrainCircuit className="w-8 h-8" />
                       </div>
                     <div>
-                      <h3 className="text-lg font-semibold">{interview.candidateName}</h3>
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
+                      <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">{interview.candidateName}</h3>
+                      <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2 font-medium">
+                          <Calendar className="w-4 h-4 text-muted-foreground/60" />
                           <span>{format(new Date(interview.createdAt.seconds * 1000), 'PPP')}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Trophy className="w-4 h-4" />
-                          <span>Score: {interview.candidateScore.overallScore}</span>
+                        <div className="flex items-center gap-2 font-medium">
+                          <Trophy className="w-4 h-4 text-amber-500/80" />
+                          <span className="text-foreground">Score: {interview.candidateScore.overallScore}</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className='flex items-center gap-4'>
+                  <div className='flex items-center gap-6'>
                     {topCandidate?.id === interview.id && (
-                       <Badge>Top Candidate</Badge>
+                       <Badge className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-sm border-none px-3 py-1">
+                        Top Candidate
+                       </Badge>
                     )}
-                    <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                    <div className="p-2 rounded-full group-hover:bg-primary/10 group-hover:text-primary transition-all">
+                      <ChevronRight className="w-6 h-6" />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -181,14 +189,19 @@ export default function HistoryPage() {
       )}
 
        {!isLoading && (!interviews || interviews.length === 0) && (
-        <div className="flex flex-col items-center justify-center h-[400px] text-center border-2 border-dashed rounded-lg bg-card/50">
-          <BarChart className="w-16 h-16 mb-4 text-muted-foreground" />
-          <h2 className="text-2xl font-semibold tracking-tight font-headline">
-            No Analyses Yet
+        <div className="flex flex-col items-center justify-center min-h-[400px] text-center p-12 border-2 border-dashed rounded-2xl bg-card/50 animate-in zoom-in-95 duration-700">
+          <div className="p-6 rounded-full bg-muted/30 mb-6">
+            <BarChart className="w-16 h-16 text-muted-foreground/40" />
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight mb-3">
+            No Analyses Found
           </h2>
-          <p className="mt-2 text-muted-foreground">
-            Your saved interview analyses will appear here.
+          <p className="text-muted-foreground max-w-md mx-auto text-lg mb-8">
+            Start your first interview analysis to build your candidate history.
           </p>
+          <Button asChild size="lg" className="px-8 transition-transform hover:scale-105 active:scale-95">
+            <Link href="/analysis">Analyze New Interview</Link>
+          </Button>
         </div>
       )}
     </div>

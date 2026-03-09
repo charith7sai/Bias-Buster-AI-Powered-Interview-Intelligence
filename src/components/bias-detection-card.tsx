@@ -29,21 +29,21 @@ interface BiasDetectionCardProps {
 const severityMap = {
   Low: {
     icon: ShieldCheck,
-    color: "bg-green-500",
+    color: "bg-emerald-500",
     text: "Low",
-    className: "border-green-500/50 text-green-700 dark:text-green-400",
+    className: "border-emerald-500/30 text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/10",
   },
   Medium: {
     icon: ShieldAlert,
-    color: "bg-yellow-500",
+    color: "bg-amber-500",
     text: "Medium",
-    className: "border-yellow-500/50 text-yellow-700 dark:text-yellow-400",
+    className: "border-amber-500/30 text-amber-700 dark:text-amber-400 bg-amber-50/50 dark:bg-amber-950/10",
   },
   High: {
     icon: AlertTriangle,
-    color: "bg-red-500",
+    color: "bg-destructive",
     text: "High",
-    className: "border-red-500/50 text-red-700 dark:text-red-400",
+    className: "border-destructive/30 text-destructive dark:text-destructive bg-destructive/5",
   },
 };
 
@@ -51,45 +51,52 @@ export function BiasDetectionCard({ biasDetection }: BiasDetectionCardProps) {
   const hasBias = biasDetection.biases && biasDetection.biases.length > 0;
 
   return (
-    <Card>
+    <Card className="transition-all duration-300 hover:shadow-md">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <AlertTriangle className="text-primary" />
+          <div className="p-2 rounded-lg bg-primary/10">
+            <AlertTriangle className="w-5 h-5 text-primary" />
+          </div>
           Interviewer Bias Detection
         </CardTitle>
         <CardDescription>
-          Analysis of potential interviewer bias based on the transcript.
+          AI-driven analysis of potential bias patterns in interview dynamics.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div>
-          <h3 className="font-semibold">Overall Assessment</h3>
-          <p className="text-muted-foreground">{biasDetection.overallAssessment}</p>
+      <CardContent className="space-y-6">
+        <div className="p-4 rounded-xl bg-accent/30 border border-border/50">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-2">Overall Assessment</h3>
+          <p className="text-foreground leading-relaxed font-medium">{biasDetection.overallAssessment}</p>
         </div>
+        
         {hasBias ? (
           <Accordion type="single" collapsible className="w-full">
             {biasDetection.biases.map((bias, index) => {
               const severityInfo =
                 severityMap[bias.severity as keyof typeof severityMap] || severityMap.Low;
               return (
-                <AccordionItem value={`item-${index}`} key={index}>
-                  <AccordionTrigger>
-                    <div className="flex items-center gap-3">
-                      <severityInfo.icon
-                        className={`w-5 h-5 ${severityInfo.className.split(' ').at(-1)}`}
-                      />
-                      <span className="font-medium">{bias.biasType}</span>
-                      <Badge variant="outline" className={severityInfo.className}>
-                        {severityInfo.text}
+                <AccordionItem value={`item-${index}`} key={index} className="border-none mb-3 last:mb-0">
+                  <AccordionTrigger className="p-4 rounded-xl border border-border/50 hover:bg-accent/50 hover:no-underline transition-all [&[data-state=open]]:rounded-b-none [&[data-state=open]]:border-b-0">
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className={cn("p-2 rounded-full", severityInfo.className)}>
+                        <severityInfo.icon className="w-4 h-4" />
+                      </div>
+                      <span className="font-bold text-base">{bias.biasType}</span>
+                      <Badge variant="outline" className={cn("ml-auto mr-4 px-3", severityInfo.className)}>
+                        {severityInfo.text} severity
                       </Badge>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="space-y-2">
-                    <p>{bias.description}</p>
+                  <AccordionContent className="p-6 rounded-b-xl border border-t-0 border-border/50 bg-accent/10 space-y-4">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Analysis</h4>
+                      <p className="text-sm leading-relaxed">{bias.description}</p>
+                    </div>
                     {bias.example && (
-                      <blockquote className="pl-4 italic border-l-2 text-muted-foreground">
+                      <div className="p-4 rounded-lg bg-card border border-border/40 shadow-sm italic text-muted-foreground">
+                        <span className="text-primary not-italic font-bold block text-[10px] uppercase tracking-widest mb-2">Transcript Reference:</span>
                         "{bias.example}"
-                      </blockquote>
+                      </div>
                     )}
                   </AccordionContent>
                 </AccordionItem>
@@ -97,10 +104,13 @@ export function BiasDetectionCard({ biasDetection }: BiasDetectionCardProps) {
             })}
           </Accordion>
         ) : (
-          <div className="flex items-center p-4 text-center bg-secondary rounded-lg justify-center">
-            <Info className="w-5 h-5 mr-3 text-muted-foreground" />
-            <p className="text-muted-foreground">
-              No specific biases were automatically detected.
+          <div className="flex flex-col items-center p-12 text-center bg-emerald-50/30 dark:bg-emerald-950/5 rounded-2xl border border-emerald-100/50 dark:border-emerald-900/20 justify-center">
+            <div className="p-4 rounded-full bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600 mb-4 animate-in zoom-in duration-500">
+              <ShieldCheck className="w-10 h-10" />
+            </div>
+            <h4 className="text-xl font-bold text-emerald-700 dark:text-emerald-400 mb-2">No Bias Detected</h4>
+            <p className="text-emerald-600/70 dark:text-emerald-500/60 max-w-sm">
+              The AI found no indicators of common cognitive biases in this interview transcript.
             </p>
           </div>
         )}
