@@ -19,7 +19,7 @@ export default function HomePage() {
 
   if (isUserLoading || (!isUserLoading && user)) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-cyan-100 dark:bg-slate-900">
+      <div className="flex items-center justify-center min-h-screen bg-slate-950">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
@@ -27,9 +27,7 @@ export default function HomePage() {
   
   return (
     <AuthLayout>
-      <div className="w-full max-w-md">
-        <AuthForm mode="login" />
-      </div>
+      <AuthForm mode="login" />
     </AuthLayout>
   );
 }
