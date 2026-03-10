@@ -15,46 +15,61 @@ interface TranscriptCardProps {
 }
 
 export function TranscriptCard({ transcript }: TranscriptCardProps) {
-  const formattedTranscript = transcript
+  const formattedTranscript = (transcript || "")
     .split("\n")
     .map((line, index) => {
-      if (line.startsWith("Interviewer:")) {
+      const trimmedLine = line.trim();
+      if (!trimmedLine) return <div key={index} className="h-4" />;
+
+      if (trimmedLine.startsWith("Interviewer:")) {
         return (
-          <p key={index} className="mb-2">
-            <span className="font-semibold text-primary">Interviewer:</span>
-            {line.substring(12)}
-          </p>
+          <div key={index} className="mb-4">
+            <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary mb-1">
+              Interviewer
+            </span>
+            <p className="text-foreground leading-relaxed">
+              {trimmedLine.replace(/^Interviewer:\s*/, "")}
+            </p>
+          </div>
         );
       }
-      if (line.startsWith("Candidate:")) {
+      
+      if (trimmedLine.startsWith("Candidate:")) {
         return (
-          <p key={index} className="mb-2">
-            <span className="font-semibold text-accent-foreground">Candidate:</span>
-            {line.substring(10)}
-          </p>
+          <div key={index} className="mb-4">
+            <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-accent/20 text-accent mb-1">
+              Candidate
+            </span>
+            <p className="text-foreground leading-relaxed">
+              {trimmedLine.replace(/^Candidate:\s*/, "")}
+            </p>
+          </div>
         );
       }
+
       return (
-        <p key={index} className="mb-2">
-          {line}
+        <p key={index} className="mb-4 text-muted-foreground leading-relaxed">
+          {trimmedLine}
         </p>
       );
     });
 
   return (
-    <Card>
+    <Card className="transition-all duration-300 hover:shadow-md">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <ScrollText className="text-primary" />
+          <div className="p-2 rounded-lg bg-primary/10">
+            <ScrollText className="w-5 h-5 text-primary" />
+          </div>
           Interview Transcript
         </CardTitle>
         <CardDescription>
-          The full, diarized transcript of the interview.
+          The full, diarized transcript of the interview conversation.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-72 w-full rounded-md border p-4 bg-muted/30">
-          <div className="text-sm">{formattedTranscript}</div>
+        <ScrollArea className="h-[400px] w-full rounded-xl border bg-accent/5 p-6">
+          <div className="text-sm space-y-2">{formattedTranscript}</div>
         </ScrollArea>
       </CardContent>
     </Card>

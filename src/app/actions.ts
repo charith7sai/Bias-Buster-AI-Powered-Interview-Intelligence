@@ -54,251 +54,180 @@ type MockData = {
 
 const MOCK_DATA: MockData[] = [
   {
-    transcript: `Interviewer: Good morning, thanks for coming in. To start, could you tell me about a time you had to handle a challenging project with a tight deadline?
+    transcript: `Interviewer: Good morning! Thanks for joining us today. To kick things off, can you tell me about a time you had to lead a team through a high-pressure situation?
 
-Candidate: Good morning. Yes, certainly. In my previous role as a Project Manager at TechSolutions, we were tasked with developing a new e-commerce platform for a major client. The original timeline was six months, but the client suddenly requested to launch two months earlier to align with their new marketing campaign.
+Candidate: Good morning. Absolutely. In my last role at Spark Systems, we had a critical server migration scheduled for a weekend. Twelve hours before the cutover, our lead engineer fell ill. I had to step up and coordinate the final testing phases while keeping the stakeholders informed.
 
-Interviewer: That sounds like a significant challenge. What was your specific role and what did you have to do?
+Interviewer: That sounds intense. What was the specific outcome of your leadership during that window?
 
-Candidate: As the lead PM, my task was to re-evaluate the entire project plan and figure out how to meet this new deadline without compromising the core features. I had to coordinate with the development, design, and QA teams to identify what was feasible.
+Candidate: I organized a rapid knowledge transfer session between the remaining team members and divided the remaining tasks into smaller, manageable chunks. We successfully completed the migration four hours ahead of the scheduled launch time. Our downtime was zero percent, which was better than the projected two percent. The client rewarded the team with a formal commendation for our adaptability.
 
-Interviewer: So how did you approach this? What actions did you take?
+Interviewer: Excellent. Now, how do you handle direct disagreement with a superior?
 
-Candidate: First, I organized an emergency meeting with all team leads. I broke down the remaining work into 'must-have' and 'nice-to-have' features using the MoSCoW method. I then renegotiated the scope with the client, getting them to agree to move some 'nice-to-have' features to a post-launch phase. For my team, I implemented a more agile workflow with daily stand-ups to track progress closely and quickly resolve any blockers. I also allocated a small part of the budget to bring in a freelance UI designer for a week to speed up the design phase.
+Candidate: I believe in constructive friction. Once, my manager proposed a UI overhaul that I felt would negatively impact our accessibility compliance. I didn't just say 'no'; I prepared a visual report showing the contrast issues and proposed an alternative palette that achieved his aesthetic goals while meeting WCAG AA standards.
 
-Interviewer: That's a comprehensive approach. What was the outcome of your actions?
+Interviewer: And what happened after you presented that?
 
-Candidate: The result was that we successfully launched the platform on the revised deadline. The client was thrilled with the core functionality and our ability to adapt. The platform handled the marketing campaign traffic without any issues, leading to a 20% increase in their online sales in the first month. Our team also felt a great sense of accomplishment, and the new agile process I introduced was adopted for future projects.
-
-Interviewer: That's a great example, thank you. Now, can you describe a situation where you had a conflict with a team member and how you resolved it?
-
-Candidate: Yes. On that same project, one of the senior developers was very resistant to the new agile approach. He felt it was micromanagement and disrupted his workflow. This caused some tension in the team. My task was to address this conflict before it affected team morale and productivity.
-
-Interviewer: How did you handle that?
-
-Candidate: I scheduled a one-on-one meeting with him to understand his concerns. I actively listened to his perspective and acknowledged his experience and expertise. Instead of just imposing the new process, I asked for his suggestions on how we could adapt it to better suit the team's needs while still meeting our goals. We agreed to try a modified version of the daily stand-ups, making them more focused and shorter. I also gave him ownership of a critical component of the project, which empowered him.
-
-Interviewer: And the result?
-
-Candidate: He became much more engaged and even started championing the agile process to other team members. The conflict was resolved, and the team's communication and collaboration improved significantly. The project benefited from his valuable input, and we avoided a potential bottleneck.
-`,
+Candidate: He appreciated the data-driven approach. We adopted the alternative palette, and after launch, our accessibility score actually increased by 15 points. It taught me that presenting solutions, not just problems, is key to professional disagreement.`,
     analysis: {
       starAnalysis: {
-        overallRating: "Excellent",
-        strengths:
-          "Candidate provides exceptionally clear, well-structured, and detailed answers using the STAR method. They consistently demonstrate strong ownership and impact.",
-        improvements:
-          "While technically proficient, the candidate could benefit from showcasing more proactive leadership initiatives in their examples.",
+        overallRating: "Outstanding",
+        strengths: "Exceptionally strong leadership and problem-solving skills. Consistently uses data to support decisions and communicates with high clarity.",
+        improvements: "Could focus on delegating earlier in the process to avoid bottlenecking critical knowledge.",
         starScores: {
-          "Challenging project with a tight deadline": 5,
-          "Conflict with a team member": 5,
+          "High-pressure leadership": 5,
+          "Professional disagreement": 5,
         },
         starBreakdowns: [
           {
-            question: "Challenging project with a tight deadline",
-            situation:
-              "We had a key client e-commerce platform project with a six-month timeline. The client suddenly moved the launch date up by two months to coincide with a new marketing campaign.",
-            task: "My responsibility as the lead Project Manager was to re-plan the entire project to meet the new, aggressive deadline without sacrificing essential platform features or quality.",
-            action:
-              "I immediately assembled the team leads to re-prioritize features using the MoSCoW method. I successfully renegotiated scope with the client to move non-critical features to a phase two release. I also adopted a more agile workflow with daily stand-ups and onboarded a freelance designer to accelerate the design process.",
-            result:
-              "We launched the platform on the new deadline. It performed flawlessly during the marketing campaign, leading to a 20% increase in the client's online sales in the first month. The team's morale was high, and our new agile process was adopted company-wide.",
+            question: "High-pressure leadership",
+            situation: "A lead engineer fell ill right before a massive, high-stakes server migration at Spark Systems.",
+            task: "As the project lead, I had to ensure the migration proceeded without errors despite the loss of our primary technical resource.",
+            action: "I conducted emergency knowledge shares, restructured the task list, and maintained constant communication with clients.",
+            result: "Migration finished 4 hours early with zero downtime, earning a client commendation.",
           },
           {
-            question: "Conflict with a team member",
-            situation:
-              "A senior developer on the project was resistant to the new agile process I introduced, viewing it as micromanagement. This created friction within the team.",
-            task: "I needed to resolve this conflict to maintain team morale and ensure we stayed on track with our accelerated timeline.",
-            action:
-              "I met with the developer one-on-one to listen to his concerns. We collaborated on modifying the stand-up format to be more efficient. I also gave him full ownership of a critical backend component to empower him and leverage his expertise.",
-            result:
-              "The developer became a strong advocate for the new process. The team's communication improved, the conflict was resolved, and his contributions were crucial to the project's success.",
-          },
+            question: "Professional disagreement",
+            situation: "My manager wanted a design change that would have broken accessibility laws.",
+            task: "I needed to steer the project toward compliance without undermining my manager's vision.",
+            action: "I produced a comparative data report and offered a middle-ground solution that satisfied both design and legal requirements.",
+            result: "The alternative was adopted, and accessibility scores improved by 15 points post-launch.",
+          }
         ],
       },
       biasDetection: {
-        overallAssessment:
-          "The interview was conducted fairly. The interviewer maintained a neutral and professional tone, asking open-ended questions that allowed the candidate to fully express their experiences.",
+        overallAssessment: "The interview was conducted with high professional standards. The questions were focused on behavioral evidence and outcomes.",
         biases: [],
       },
       candidateScore: {
-        overallScore: 92,
-        strengths:
-          "- Exceptional communication and storytelling\n- Strong problem-solving and analytical skills\n- Demonstrates high levels of ownership and accountability",
-        improvements: "- Proactively seek out leadership opportunities",
+        overallScore: 94,
+        strengths: "- High emotional intelligence\n- Data-driven decision making\n- Proven leadership under duress",
+        improvements: "- Explore advanced project management certifications",
       },
     },
   },
   {
-    transcript: `Interviewer: Thanks for joining. Let's start with this: tell me about a time you had to deal with a challenging project deadline.
+    transcript: `Interviewer: Hi there. Let's get right to it. Tell me about a time you failed to meet a deadline.
 
-Candidate: Sure. In my last role, my team was working on a client project, and the deadline was moved up by several weeks. It created a lot of pressure. I actually learned to handle pressure like that back at State University.
+Candidate: Hi. Well, at my previous internship, I was tasked with writing a market research report. I underestimated how long the data cleaning would take, and I missed the initial draft deadline by two days.
 
-Interviewer: Oh, you went to State University too? Go Bulldogs! Did you have Professor Smith for computer science? It's a small world. Anyway, what was your specific responsibility in that situation?
+Interviewer: I see. Missing deadlines is never ideal. What did you do to fix the situation?
 
-Candidate: My job was to figure out how to get the project done faster without a drop in quality. I needed to get the team aligned on a new plan.
+Candidate: As soon as I realized I was behind, I notified my supervisor. I worked late for two nights to finish the draft and then built a more realistic buffer into my next two assignments to ensure it didn't happen again.
 
-Interviewer: And what steps did you take?
+Interviewer: And the final report? Was it successful?
 
-Candidate: I talked to the team about what features were most important. We decided to focus on the core functionalities and pushed some other things to a later update. I also set up more frequent check-in meetings to make sure we were on track.
+Candidate: Yes, the final version was delivered on time for the client meeting. They found the insights useful for their Q4 planning, but I definitely learned that early communication is better than a late apology.
 
-Interviewer: What was the outcome?
+Interviewer: Okay. How do you deal with a difficult colleague?
 
-Candidate: We managed to launch the main platform on time. The client was happy that we met the new date, and the core product was solid.
+Candidate: I try to find common ground. I once worked with a developer who was very blunt. I realized they just valued efficiency over small talk. I adjusted my communication to be more concise and focused on the 'bottom line' when talking to them.
 
-Interviewer: Good. Let's move on. Have you ever had a conflict with a coworker?
+Interviewer: Did that change the dynamic?
 
-Candidate: Yes, I had a disagreement with a coworker about the best way to approach a task. We had different ideas on the technical implementation.
-
-Interviewer: What did you do to resolve it?
-
-Candidate: I asked them to have a chat. We sat down, and I made sure to listen to their point of view. We talked about our different ideas and eventually found a compromise that used parts of both our approaches and worked for both of us.
-
-Interviewer: And the result of that conversation?
-
-Candidate: We were able to resolve the issue and finish the task together. Our working relationship got better after that because we understood each other's perspectives more.
-`,
+Candidate: It did. Our work together became much faster, and they eventually started asking for my input on design early on because they knew I'd get straight to the point.`,
     analysis: {
       starAnalysis: {
-        overallRating: "Good",
-        strengths:
-          "The candidate effectively uses the STAR method for most questions, providing clear context and actions. They show a good understanding of their role and contributions.",
-        improvements:
-          "The candidate could provide more quantifiable results to better demonstrate the impact of their actions. Some answers were slightly generic.",
+        overallRating: "Solid",
+        strengths: "Good accountability and self-awareness. Shows an ability to learn from mistakes and adapt communication styles to fit different personalities.",
+        improvements: "Needs to provide more specific metrics of success in their examples. The 'STAR' structure is present but could be more detailed.",
         starScores: {
-          "Challenging project with a tight deadline": 4,
-          "Conflict with a team member": 4,
+          "Missing a deadline": 3,
+          "Dealing with a difficult colleague": 4,
         },
         starBreakdowns: [
           {
-            question: "Challenging project with a tight deadline",
-            situation:
-              "My team was working on a client project, and the deadline was moved up.",
-            task: "I had to figure out how to get the project done faster.",
-            action:
-              "I talked to the team about what features were most important. We decided to focus on the core functionalities and pushed some other things to a later update. I also set up more frequent check-in meetings.",
-            result:
-              "We managed to launch the main platform on time. The client was happy that we met the new date.",
+            question: "Missing a deadline",
+            situation: "I underestimated the complexity of data cleaning for a market research report during an internship.",
+            task: "I had to complete the report while managing expectations with my supervisor.",
+            action: "I communicated the delay early and worked overtime to minimize the impact.",
+            result: "The final report was delivered on time for the client, and I implemented new time-tracking habits.",
           },
           {
-            question: "Conflict with a team member",
-            situation:
-              "I had a disagreement with a coworker about the best way to approach a task.",
-            task: "We needed to get on the same page so we could move forward.",
-            action:
-              "I asked them to have a chat. We talked about our different ideas and found a compromise that worked for both of us.",
-            result:
-              "We were able to resolve the issue and finish the task together. Our working relationship got better after that.",
-          },
+            question: "Dealing with a difficult colleague",
+            situation: "A coworker's blunt communication style was causing friction in our daily interactions.",
+            task: "I needed to improve our working relationship to maintain team efficiency.",
+            action: "I mirrored their direct communication style and focused purely on technical requirements.",
+            result: "Productivity increased, and a mutual professional respect was established.",
+          }
         ],
       },
       biasDetection: {
-        overallAssessment:
-          "The interview appears to be mostly fair. However, a potential 'Affinity Bias' was noted, as the interviewer and candidate shared a similar background, leading to a more conversational and less structured Q&A at times.",
+        overallAssessment: "Mostly objective, though the first question ('Missing deadlines is never ideal') contained a slight negative framing that could influence candidate confidence.",
         biases: [
           {
-            biasType: "Affinity Bias",
-            description:
-              "The tendency to favor people who are similar to us. The interviewer and candidate both attended the same university, which was mentioned multiple times.",
+            biasType: "Framing Effect",
+            description: "The interviewer used negative framing in the follow-up, which can subconsciously pressure the candidate to be overly defensive.",
             severity: "Low",
-            example:
-              "Interviewer: 'Oh, you went to State University too? Go Bulldogs! Did you have Professor Smith for computer science?'",
-          },
+            example: "Interviewer: 'Missing deadlines is never ideal.'",
+          }
         ],
       },
       candidateScore: {
-        overallScore: 81,
-        strengths:
-          "- Solid communication skills\n- Good experience with teamwork and collaboration\n- Technically competent in core areas",
-        improvements:
-          "- Focus on quantifying achievements with data\n- Prepare more unique and memorable examples",
+        overallScore: 78,
+        strengths: "- High level of accountability\n- Adaptable communication style",
+        improvements: "- Practice quantifying the impact of actions with data\n- Provide more complex examples of problem-solving",
       },
     },
   },
   {
-    transcript: `Interviewer: Let's talk about a project with a tight deadline. You've handled those well, I assume?
+    transcript: `Interviewer: Welcome! It's great to have you. Tell me about a project you're particularly proud of.
 
-Candidate: Um, yes. We had a project that was due soon.
+Candidate: Thank you. I'm really proud of the 'Eco-Tracker' app I built as a side project. It helps users track their carbon footprint based on their shopping habits.
 
-Interviewer: And what was your task? I imagine it was to finish it on time, right?
+Interviewer: That sounds fascinating. What was your specific role in that?
 
-Candidate: Yes, the task was to finish it on time.
+Candidate: I was the sole developer and designer. I had to integrate a barcode scanning API with a database of carbon impact scores for over 50,000 products.
 
-Interviewer: So what did you do? You must have really pulled out all the stops.
+Interviewer: What was the biggest hurdle you faced?
 
-Candidate: I worked extra hours to get my parts done. I tried to tell everyone to work faster.
+Candidate: The database was very messy. I had to write custom scripts to normalize the data and ensure the scanning was fast. I optimized the queries to reduce lookup time from 3 seconds to under 200 milliseconds.
 
-Interviewer: And the result was a big success, I bet?
+Interviewer: And what's the status of the app now?
 
-Candidate: The project was a bit late, but we eventually finished it. It was a stressful time.
+Candidate: I released it on the App Store last month. It currently has 500 active users and a 4.8-star rating. I'm currently working on a version that allows users to 'offset' their footprint through local tree-planting initiatives.
 
-Interviewer: Okay. What about teamwork? So, you'd say you're a great team player who always steps up, right?
+Interviewer: That's great. Have you ever had to work in a team where someone wasn't pulling their weight?
 
-Candidate: I try to be.
+Candidate: Yes, in a university capstone project. One member was consistently missing meetings. I decided to take a supportive approach rather than an accusatory one. I asked if they were overwhelmed and helped them re-scope their portion of the project.
 
-Interviewer: Have you had disagreements with teammates?
+Interviewer: And did they step up?
 
-Candidate: A teammate and I weren't agreeing on things once.
-
-Interviewer: And you had to deal with the situation, I'm sure. What did you do?
-
-Candidate: I mostly just tried to avoid them to prevent more arguments. I did my work, and they did theirs.
-
-Interviewer: So you kept things professional and didn't let it escalate?
-
-Candidate: Yes. We didn't argue anymore, but we also didn't collaborate much. The work got done, but it wasn't a great team atmosphere.
-`,
+Candidate: They did. It turned out they were struggling with the specific framework we were using. After a few pair-programming sessions, they were able to contribute their share, and we got an 'A' on the project.`,
     analysis: {
       starAnalysis: {
-        overallRating: "Needs Improvement",
-        strengths:
-          "The candidate is enthusiastic and shows a willingness to learn. They attempted to structure their answers, but often missed key components of the STAR method.",
-        improvements:
-          "Answers lack depth and specific details. The candidate often spoke in generalities and struggled to provide concrete examples of their actions and the results.",
+        overallRating: "Very Good",
+        strengths: "Strong technical initiative and a proactive, empathetic approach to teamwork. Demonstrates high ownership of end-to-end product development.",
+        improvements: "Could benefit from more professional environment examples, as side projects and university work have lower stakes.",
         starScores: {
-          "Challenging project with a tight deadline": 2,
-          "Conflict with a team member": 3,
+          "Proudest project": 5,
+          "Team conflict": 4,
         },
         starBreakdowns: [
           {
-            question: "Challenging project with a tight deadline",
-            situation: "We had a project that was due soon.",
-            task: "The task was to finish it on time.",
-            action:
-              "I worked extra hours to get my parts done. I tried to tell everyone to work faster.",
-            result:
-              "The project was a bit late, but we eventually finished it. It was a stressful time.",
+            question: "Proudest project",
+            situation: "I wanted to build a tool that made environmental impact tangible for everyday shoppers.",
+            task: "I needed to design and develop a full-stack mobile app with a high-performance database lookup.",
+            action: "I optimized database queries (3s to 200ms) and integrated a complex scanning API.",
+            result: "App launched with 500 active users and a 4.8-star rating.",
           },
           {
-            question: "Conflict with a team member",
-            situation: "A teammate and I weren't agreeing on things.",
-            task: "I had to deal with the situation.",
-            action:
-              "I mostly just tried to avoid them to prevent more arguments. I did my work, and they did theirs.",
-            result:
-              "We didn't argue anymore, but we also didn't collaborate much. The work got done, but it wasn't a great team atmosphere.",
-          },
+            question: "Team conflict",
+            situation: "A team member was disengaged during a critical university capstone project.",
+            task: "I had to ensure the project met its goals without letting the team dynamic sour.",
+            action: "I checked in with the individual, identified a technical knowledge gap, and provided mentorship.",
+            result: "The member successfully contributed, and the team received an 'A' grade.",
+          }
         ],
       },
       biasDetection: {
-        overallAssessment:
-          "A potential 'Leading Question' bias was detected. The interviewer sometimes phrased questions in a way that suggested the desired answer, which may have influenced the candidate's responses.",
-        biases: [
-          {
-            biasType: "Leading Questions",
-            description: "Questions that prompt or encourage the desired answer.",
-            severity: "Medium",
-            example:
-              "Interviewer: 'So, you'd say you're a great team player who always steps up, right?'",
-          },
-        ],
+        overallAssessment: "The interview was highly encouraging and positive. No significant biases were detected.",
+        biases: [],
       },
       candidateScore: {
-        overallScore: 65,
-        strengths:
-          "- Positive attitude and high energy\n- Eager to take on new challenges",
-        improvements:
-          "- Practice the STAR method to structure answers\n- Prepare specific examples before the interview\n- Work on providing more detail about personal contributions",
+        overallScore: 86,
+        strengths: "- High technical proficiency\n- Empathetic leadership style\n- Strong entrepreneurial drive",
+        improvements: "- Focus on gaining more experience in enterprise-scale environments",
       },
     },
   },
@@ -307,8 +236,9 @@ Candidate: Yes. We didn't argue anymore, but we also didn't collaborate much. Th
 const getIndexFromName = (name: string, arrayLength: number): number => {
   if (!name) return 0;
   let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = (hash << 5) - hash + name.charCodeAt(i);
+  const lowerName = name.trim().toLowerCase();
+  for (let i = 0; i < lowerName.length; i++) {
+    hash = (hash << 5) - hash + lowerName.charCodeAt(i);
     hash |= 0; // Convert to 32bit integer
   }
   return Math.abs(hash) % arrayLength;
@@ -320,14 +250,14 @@ export async function analyzeInterview(candidateName: string): Promise<{
 }> {
   try {
     // Simulate processing time
-    await sleep(2000);
+    await sleep(2500);
 
     // Deterministically select one of the mock analyses based on candidate name
     const analysisIndex = getIndexFromName(candidateName, MOCK_DATA.length);
     const selectedMock = MOCK_DATA[analysisIndex];
 
-    // Deterministically adjust the score
-    const scoreAdjustment = getIndexFromName(candidateName, 6) - 3; // -3 to +2
+    // Deterministically adjust the score slightly based on the name hash
+    const scoreAdjustment = (getIndexFromName(candidateName, 11) - 5); // -5 to +5
     const finalScore = Math.min(
       100,
       Math.max(
