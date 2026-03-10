@@ -60,15 +60,15 @@ Candidate: Good morning. Absolutely. In my last role at Spark Systems, we had a 
 
 Interviewer: That sounds intense. What was the specific outcome of your leadership during that window?
 
-Candidate: I organized a rapid knowledge transfer session between the remaining team members and divided the remaining tasks into smaller, manageable chunks. We successfully completed the migration four hours ahead of the scheduled launch time. Our downtime was zero percent, which was better than the projected two percent. The client rewarded the team with a formal commendation for our adaptability.
+Candidate: I organized a rapid knowledge transfer session between the remaining team members and divided the remaining tasks into smaller, manageable chunks. We successfully completed the migration four hours ahead of the scheduled launch time. Our downtime was zero percent, which was better than the projected two percent.
 
 Interviewer: Excellent. Now, how do you handle direct disagreement with a superior?
 
-Candidate: I believe in constructive friction. Once, my manager proposed a UI overhaul that I felt would negatively impact our accessibility compliance. I didn't just say 'no'; I prepared a visual report showing the contrast issues and proposed an alternative palette that achieved his aesthetic goals while meeting WCAG AA standards.
+Candidate: I believe in constructive friction. Once, my manager proposed a UI overhaul that I felt would negatively impact our accessibility compliance. I didn't just say 'no'; I prepared a visual report showing the contrast issues and proposed an alternative palette that achieved his aesthetic goals while meeting WCAG standards.
 
 Interviewer: And what happened after you presented that?
 
-Candidate: He appreciated the data-driven approach. We adopted the alternative palette, and after launch, our accessibility score actually increased by 15 points. It taught me that presenting solutions, not just problems, is key to professional disagreement.`,
+Candidate: He appreciated the data-driven approach. We adopted the alternative palette, and after launch, our accessibility score actually increased by 15 points. It taught me that presenting solutions, not just problems, is key.`,
     analysis: {
       starAnalysis: {
         overallRating: "Outstanding",
@@ -185,15 +185,15 @@ Candidate: The database was very messy. I had to write custom scripts to normali
 
 Interviewer: And what's the status of the app now?
 
-Candidate: I released it on the App Store last month. It currently has 500 active users and a 4.8-star rating. I'm currently working on a version that allows users to 'offset' their footprint through local tree-planting initiatives.
+Candidate: I released it on the App Store last month. It currently has 500 active users and a 4.8-star rating. I'm currently working on a version that allows users to 'offset' their footprint.
 
 Interviewer: That's great. Have you ever had to work in a team where someone wasn't pulling their weight?
 
-Candidate: Yes, in a university capstone project. One member was consistently missing meetings. I decided to take a supportive approach rather than an accusatory one. I asked if they were overwhelmed and helped them re-scope their portion of the project.
+Candidate: Yes, in a university capstone project. One member was consistently missing meetings. I decided to take a supportive approach. I asked if they were overwhelmed and helped them re-scope their portion of the project.
 
 Interviewer: And did they step up?
 
-Candidate: They did. It turned out they were struggling with the specific framework we were using. After a few pair-programming sessions, they were able to contribute their share, and we got an 'A' on the project.`,
+Candidate: They did. It turned out they were struggling with the specific framework we were using. After a few pair-programming sessions, they were able to contribute their share.`,
     analysis: {
       starAnalysis: {
         overallRating: "Very Good",
