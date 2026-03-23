@@ -25,7 +25,7 @@ Bias Buster is a sophisticated, data-driven application designed to enhance the 
 
 ## 📤 Pushing to GitHub
 
-To upload this project to your specific GitHub repository, run these commands in your terminal:
+To resolve the "failed to push" error (which occurs if your GitHub repo already has a README), run these commands in order:
 
 1. **Initialize Git**:
    ```bash
@@ -43,9 +43,12 @@ To upload this project to your specific GitHub repository, run these commands in
    ```bash
    git remote add origin https://github.com/charith7sai/Bias-Buster-AI-Powered-Interview-Intelligence.git
    ```
-5. **Push to Main**:
+5. **Sync with Remote (Fixes the Error)**:
    ```bash
-   git branch -M main
+   git pull origin main --allow-unrelated-histories
+   ```
+6. **Push to Main**:
+   ```bash
    git push -u origin main
    ```
 
