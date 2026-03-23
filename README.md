@@ -14,21 +14,30 @@ Bias Buster is a professional talent acquisition platform designed to transform 
 3. Set up your Firebase environment variables in a `.env` file.
 4. Run the development server: `npm run dev`
 
-## 📤 Pushing to GitHub (The Fix)
+## 📤 Pushing to GitHub (Step-by-Step)
 
-If you are seeing errors like `[rejected] main -> main (non-fast-forward)`, it's because GitHub has files (like a default README) that your local computer doesn't have yet. 
+If you are uploading this project for the first time, follow these instructions to avoid common errors.
 
-**Option A: The Quickest Fix (Overwrites GitHub)**
-If this is a brand new repository and you don't care about the placeholder files GitHub created, use this command to force your local code up:
-```bash
-git push -u origin main --force
-```
+### **Option A: The Fresh Start (Recommended)**
+If you just created an empty repository on GitHub, run these commands in order:
 
-**Option B: The "Correct" Way (Merges GitHub files)**
-If you want to keep files from both places, run these three commands in order:
+1. `git init`
+2. `git add .`
+3. `git commit -m "Initial commit"`
+4. `git remote add origin https://github.com/charith7sai/Bias-Buster-AI-Powered-Interview-Intelligence.git`
+5. `git branch -M main`
+6. `git push -u origin main --force` 
+
+*Note: The `--force` flag is used here because GitHub often creates a default README/License that conflicts with your local files. This command overwrites the GitHub placeholder with your actual code.*
+
+### **Option B: Merging with existing GitHub files**
+If you want to keep files that are already on GitHub (like a README you edited online):
+
 1. `git config pull.rebase false`
 2. `git pull origin main --allow-unrelated-histories`
-3. `git push -u origin main`
+3. `git add .`
+4. `git commit -m "Merge GitHub changes"`
+5. `git push -u origin main`
 
 ## 🛠️ Tech Stack
 - **Framework:** Next.js 15 (App Router)
