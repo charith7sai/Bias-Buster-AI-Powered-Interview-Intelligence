@@ -23,37 +23,28 @@ Bias Buster is a sophisticated, data-driven application designed to enhance the 
 2. **Run Development Server**: `npm run dev`
 3. **Build for Production**: `npm run build`
 
-## 📤 Pushing to GitHub (Fixing the Rejection Error)
+## 📤 THE ULTIMATE FIX: Pushing to GitHub
 
-If you see an error like `[rejected] main -> main (non-fast-forward)`, run these commands in order to sync your local project with the GitHub repository:
+If you see an error like `[rejected] main -> main (non-fast-forward)` or `fatal: Need to specify how to reconcile divergent branches`, run these EXACT commands in order:
 
-1. **Initialize Git (if not already done)**:
+1. **Set Merge Strategy**:
+   Tell Git to merge the histories instead of rebasing.
    ```bash
-   git init
+   git config pull.rebase false
    ```
-2. **Add and Commit your work**:
-   ```bash
-   git add .
-   ```
-3. **Commit**:
-   ```bash
-   git commit -m "Initial commit: Bias Buster implementation"
-   ```
-4. **Connect to your Remote Repository**:
-   ```bash
-   git remote add origin https://github.com/charith7sai/Bias-Buster-AI-Powered-Interview-Intelligence/tree/main
-   ```
-5. **THE FIX: Sync with Remote**:
-   This merges the remote README/files with your local files:
+
+2. **Sync with Remote (Merge)**:
+   This fetches the remote files (like the README GitHub created) and merges them into your local project.
    ```bash
    git pull origin main --allow-unrelated-histories
    ```
-6. **Push to Main**:
+   *Note: If a text editor (Vim) opens, type `:wq` and press Enter to save the merge message.*
+
+3. **Push to Main**:
+   Now that your local project has the remote's history, you can push successfully.
    ```bash
    git push -u origin main
    ```
-
-*Note: If the `pull` opens a text editor (like Vim), just type `:wq` and press Enter to save the merge message.*
 
 ## 🔒 Security
 
