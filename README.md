@@ -1,51 +1,39 @@
 # Bias Buster: AI-Powered Interview Intelligence
 
-Bias Buster is a sophisticated, data-driven application designed to enhance the objectivity and effectiveness of the hiring process. By leveraging Generative AI, the platform analyzes interview transcripts to identify behavioral evidence and mitigate unconscious bias.
+Bias Buster is a professional talent acquisition platform designed to transform raw interview dialogue into structured, actionable intelligence. It leverages Generative AI to perform diarization, STAR evidence extraction, and unconscious bias auditing.
 
-## 🚀 Key Features
+## 🚀 Getting Started
 
-- **Automated STAR Analysis**: Automatically extracts the Situation, Task, Action, and Result from candidate responses to evaluate behavioral competencies.
-- **Cognitive Bias Detection**: Identifies and flags potential biases such as the framing effect, affinity bias, and the halo effect with severity ratings.
-- **Holistic Scoring Engine**: Generates a weighted 0-100 competency score based on objective performance signals.
-- **Real-Time Diarization**: Formats raw transcripts into clean, speaker-identified dialogue for easy review.
-- **Historical Benchmarking**: Saves all analyses to a secure cloud archive for long-term candidate comparison and auditability.
+### Prerequisites
+- Node.js 18+
+- Firebase Account
 
-## 🛠 Tech Stack
+### Installation
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up your Firebase environment variables in a `.env` file.
+4. Run the development server: `npm run dev`
 
-- **Frontend**: Next.js 15 (App Router), React 19, Tailwind CSS.
-- **UI Components**: ShadCN UI (Radix UI).
-- **Backend-as-a-Service**: Firebase (Firestore, Authentication, App Hosting).
-- **AI Orchestration**: Genkit with Google Gemini Pro.
+## 📤 Pushing to GitHub (The Fix)
 
-## 📦 Getting Started
+If you are seeing errors like `[rejected] main -> main (non-fast-forward)`, it's because GitHub has files (like a default README) that your local computer doesn't have yet. 
 
-1. **Install Dependencies**: `npm install`
-2. **Run Development Server**: `npm run dev`
-3. **Build for Production**: `npm run build`
+**Option A: The Quickest Fix (Overwrites GitHub)**
+If this is a brand new repository and you don't care about the placeholder files GitHub created, use this command to force your local code up:
+```bash
+git push -u origin main --force
+```
 
-## 📤 THE ULTIMATE FIX: Pushing to GitHub
+**Option B: The "Correct" Way (Merges GitHub files)**
+If you want to keep files from both places, run these three commands in order:
+1. `git config pull.rebase false`
+2. `git pull origin main --allow-unrelated-histories`
+3. `git push -u origin main`
 
-If you see an error like `[rejected] main -> main (non-fast-forward)` or `fatal: Need to specify how to reconcile divergent branches`, run these EXACT commands in order:
-
-1. **Set Merge Strategy**:
-   Tell Git to merge the histories instead of rebasing.
-   ```bash
-   git config pull.rebase false
-   ```
-
-2. **Sync with Remote (Merge)**:
-   This fetches the remote files (like the README GitHub created) and merges them into your local project.
-   ```bash
-   git pull origin main --allow-unrelated-histories
-   ```
-   *Note: If a text editor (Vim) opens, type `:wq` and press Enter to save the merge message.*
-
-3. **Push to Main**:
-   Now that your local project has the remote's history, you can push successfully.
-   ```bash
-   git push -u origin main
-   ```
-
-## 🔒 Security
-
-All data is secured using **Firebase Security Rules**, ensuring that interview data and transcripts are strictly private and accessible only to the authenticated recruiter who initiated the analysis.
+## 🛠️ Tech Stack
+- **Framework:** Next.js 15 (App Router)
+- **AI Orchestration:** Genkit
+- **LLM:** Gemini 1.5 Pro
+- **Database:** Cloud Firestore
+- **Auth:** Firebase Authentication
+- **Styling:** Tailwind CSS + ShadCN UI
