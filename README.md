@@ -23,15 +23,15 @@ Bias Buster is a sophisticated, data-driven application designed to enhance the 
 2. **Run Development Server**: `npm run dev`
 3. **Build for Production**: `npm run build`
 
-## 📤 Pushing to GitHub
+## 📤 Pushing to GitHub (Fixing the Rejection Error)
 
-To resolve the "failed to push" error (which occurs if your GitHub repo already has a README), run these commands in order:
+If you see an error like `[rejected] main -> main (non-fast-forward)`, run these commands in order to sync your local project with the GitHub repository:
 
-1. **Initialize Git**:
+1. **Initialize Git (if not already done)**:
    ```bash
    git init
    ```
-2. **Add Files**:
+2. **Add and Commit your work**:
    ```bash
    git add .
    ```
@@ -43,7 +43,8 @@ To resolve the "failed to push" error (which occurs if your GitHub repo already 
    ```bash
    git remote add origin https://github.com/charith7sai/Bias-Buster-AI-Powered-Interview-Intelligence.git
    ```
-5. **Sync with Remote (Fixes the Error)**:
+5. **THE FIX: Sync with Remote**:
+   This merges the remote README/files with your local files:
    ```bash
    git pull origin main --allow-unrelated-histories
    ```
@@ -51,6 +52,8 @@ To resolve the "failed to push" error (which occurs if your GitHub repo already 
    ```bash
    git push -u origin main
    ```
+
+*Note: If the `pull` opens a text editor (like Vim), just type `:wq` and press Enter to save the merge message.*
 
 ## 🔒 Security
 
