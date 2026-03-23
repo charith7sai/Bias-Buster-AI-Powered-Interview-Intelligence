@@ -9,3 +9,39 @@ The presentation layer is constructed using **React 19** and the **Next.js App R
 The intelligence tier represents the primary value proposition of the Bias Buster project, utilizing the **Genkit** framework to orchestrate sophisticated workflows with Large Language Models (LLMs). When a recruiter submits an interview, the system triggers a specialized **Genkit Flow** that manages the structured extraction of **STAR** (Situation, Task, Action, Result) evidence. This tier does not merely summarize text; it performs a deep cognitive audit of the dialogue to identify subtle indicators of interviewer bias. By defining these processes as structured server-side actions, the system ensures that sensitive analysis logic is centralized, secure, and powered by the advanced reasoning capabilities of **Gemini Pro**, delivering insights that are both deterministic and highly nuanced.
 
 For persistence and security, the architecture relies on a **Backend-as-a-Service (BaaS)** model provided by **Firebase**. **Cloud Firestore** serves as the primary NoSQL database, with a hierarchical data structure designed for scalability and strict user isolation. Security is enforced at the database level through granular **Firestore Security Rules**, which validate that every read or write operation is authorized based on the user's unique authentication token. This multi-layered security approach, combined with **Firebase Authentication**, ensures that confidential interview data and candidate assessments remain strictly private, meeting enterprise-grade standards for data protection and auditability.
+
+## Use Case Diagram
+
+The following Use Case Diagram outlines the high-level interactions between the Recruiter (Actor) and the primary system functionalities.
+
+```plantuml
+@startuml
+left to right direction
+actor "Recruiter" as User
+package "Bias Buster System" {
+  usecase "Authenticate (Login/Signup)" as UC1
+  usecase "Upload Interview Recording" as UC2
+  usecase "Perform AI Analysis (STAR/Bias)" as UC3
+  usecase "View Analysis Dashboard" as UC4
+  usecase "View Interview History" as UC5
+  usecase "Delete History Record" as UC6
+}
+actor "Firebase Auth" as Auth
+actor "AI Analysis Engine" as AI
+actor "Firestore DB" as DB
+
+User --> UC1
+User --> UC2
+User --> UC4
+User --> UC5
+User --> UC6
+
+UC1 -- Auth
+UC2 -- AI
+UC3 -- AI
+UC2 ..> UC3 : <<include>>
+UC3 -- DB
+UC5 -- DB
+UC6 -- DB
+@enduml
+```
