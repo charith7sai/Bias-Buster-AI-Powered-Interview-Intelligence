@@ -81,5 +81,3 @@ To ensure the reliability of the Bias Buster system, the implementation includes
 1.  **Extraction Accuracy (F1 Score)**: Measures the precision and recall of the STAR component extraction. The current target is **>85%**, ensuring that the SITUATION, TASK, ACTION, and RESULT categories are factually grounded and correctly identified.
 2.  **Bias Detection Recall**: Measures the system’s sensitivity to subtle cognitive biases. This is evaluated by injecting known biased questions into test transcripts; the system targets a **90% recall rate** for high-severity biases like the Framing Effect.
 3.  **Scoring Consistency (Variance)**: Measures the stability of the 0-100 overall score. By running the same transcript multiple times, the system targets a **variance of less than ±3 points**, ensuring that the AI provides an objective and stable prediction rather than a random assessment.
-
-These metrics are part of a continuous evaluation loop, where prompt refinements are tested against these benchmarks to ensure the system remains a high-precision tool for unbiased hiring.
