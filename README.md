@@ -25,13 +25,29 @@ Bias Buster is a sophisticated, data-driven application designed to enhance the 
 
 ## 📤 Pushing to GitHub
 
-To upload this project to your GitHub account:
+To upload this project to your specific GitHub repository, run these commands in your terminal:
 
-1. **Initialize Git**: `git init`
-2. **Add Files**: `git add .`
-3. **Commit**: `git commit -m "Initial commit"`
-4. **Create Remote**: `git remote add origin <your-github-repo-url>`
-5. **Push**: `git push -u origin main`
+1. **Initialize Git**:
+   ```bash
+   git init
+   ```
+2. **Add Files**:
+   ```bash
+   git add .
+   ```
+3. **Commit**:
+   ```bash
+   git commit -m "Initial commit: Bias Buster implementation"
+   ```
+4. **Connect to your Remote Repository**:
+   ```bash
+   git remote add origin https://github.com/charith7sai/Bias-Buster-AI-Powered-Interview-Intelligence.git
+   ```
+5. **Push to Main**:
+   ```bash
+   git branch -M main
+   git push -u origin main
+   ```
 
 ## 🔒 Security
 
