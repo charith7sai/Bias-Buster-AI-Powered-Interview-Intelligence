@@ -41,7 +41,7 @@ If you see an error like `[rejected] main -> main (non-fast-forward)`, run these
    ```
 4. **Connect to your Remote Repository**:
    ```bash
-   git remote add origin https://github.com/charith7sai/Bias-Buster-AI-Powered-Interview-Intelligence.git
+   git remote add origin https://github.com/charith7sai/Bias-Buster-AI-Powered-Interview-Intelligence/tree/main
    ```
 5. **THE FIX: Sync with Remote**:
    This merges the remote README/files with your local files:
