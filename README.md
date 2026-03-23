@@ -23,15 +23,6 @@ Bias Buster is a sophisticated, data-driven application designed to enhance the 
 2. **Run Development Server**: `npm run dev`
 3. **Build for Production**: `npm run build`
 
-## 📤 Pushing to GitHub
-
-To upload this project to your GitHub account:
-
-1. **Initialize Git**: `git init`
-2. **Add Files**: `git add .`
-3. **Commit**: `git commit -m "Initial commit"`
-4. **Create Remote**: `git remote add origin <your-github-repo-url>`
-5. **Push**: `git push -u origin main`
 
 ## 🔒 Security
 
